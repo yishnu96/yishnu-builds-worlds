@@ -8,42 +8,44 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 215 28% 8%;
+    --background: 212 58% 13%;
     --foreground: 0 0% 100%;
 
-    --card: 215 25% 11%;
+    --card: 214 37% 20%;
     --card-foreground: 0 0% 100%;
 
-    --popover: 215 25% 11%;
+    --popover: 214 37% 20%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 274 87% 44%;
+    --primary: 276 89% 39%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 165 82% 44%;
-    --secondary-foreground: 215 28% 8%;
+    --secondary: 162 85% 45%;
+    --secondary-foreground: 210 58% 13%;
 
-    --accent: 28 98% 49%;
+    --accent: 31 96% 51%;
     --accent-foreground: 0 0% 100%;
 
-    --muted: 215 15% 16%;
-    --muted-foreground: 217 10% 70%;
+    --accent-4: 218 75% 21%;
 
-    --destructive: 0 84.2% 60.2%;
+    --muted: 214 24% 24%;
+    --muted-foreground: 214 17% 72%;
+
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 215 15% 20%;
-    --input: 215 15% 20%;
-    --ring: 274 87% 44%;
+    --border: 214 23% 28%;
+    --input: 214 23% 28%;
+    --ring: 276 89% 39%;
 
     --radius: 1rem;
 
-    --gold: 45 100% 50%;
-    --gradient-purple: linear-gradient(135deg, hsl(274 87% 44%), hsl(165 82% 44%));
-    --gradient-orb: radial-gradient(circle, hsl(274 87% 44% / 0.3), transparent);
-    --shadow-glow: 0 0 40px hsl(274 87% 44% / 0.4);
-    --shadow-glow-green: 0 0 40px hsl(165 82% 44% / 0.4);
-    --shadow-glow-orange: 0 0 40px hsl(28 98% 49% / 0.4);
+    --gold: 51 100% 51%;
+    --gradient-purple: linear-gradient(135deg, hsl(276 89% 39%), hsl(162 85% 45%));
+    --gradient-orb: radial-gradient(circle, hsl(276 89% 39% / 0.3), transparent);
+    --shadow-glow: 0 0 40px hsl(276 89% 39% / 0.4);
+    --shadow-glow-green: 0 0 40px hsl(162 85% 45% / 0.4);
+    --shadow-glow-orange: 0 0 40px hsl(31 96% 51% / 0.4);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
@@ -56,6 +58,8 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: hsl(var(--background));
+    position: relative;
   }
 
   html {

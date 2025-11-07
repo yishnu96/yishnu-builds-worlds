@@ -1,64 +1,182 @@
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
+import { useActiveSection } from "@/hooks/use-active-section";
+import { cn } from "@/lib/utils";
+
+const NAV_LINKS = [
+  { label: "Work", target: "work" },
+  { label: "Superpowers", target: "superpowers" },
+  { label: "Case Studies", target: "case-studies" },
+  { label: "Writing", target: "writing" },
+  { label: "Connect", target: "connect" },
+];
 
 const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const activeSection = useActiveSection(NAV_LINKS.map((link) => link.target));
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
-    element?.scrollIntoView({ behavior: "smooth" });
+    if (!element) return;
+
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
+    setIsMenuOpen(false);
   };
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-background/80 backdrop-blur-strong border-b border-border" : "bg-transparent"
-      }`}
-    >
-      <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-        <div className="text-xl font-display font-bold">
-          <span className="text-foreground">YISHNU</span>
-        </div>
+    <>
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          scrolled
+            ? "bg-[#0D1B2A]/90 backdrop-blur-xl border-b border-border shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
+            : "bg-transparent",
+        )}
+      >
+        <div className="container mx-auto h-20 flex items-center justify-between px-6">
+          <button
+            onClick={() => scrollToSection("hero")}
+            className="text-2xl font-display font-bold tracking-[0.2em] text-foreground transition-transform hover:scale-105"
+          >
+            YISHNU
+          </button>
 
-        <div className="hidden md:flex items-center gap-8">
-          <button onClick={() => scrollToSection("work")} className="text-sm hover:text-primary transition-colors">
-            Work
-          </button>
-          <button onClick={() => scrollToSection("superpowers")} className="text-sm hover:text-primary transition-colors">
-            Superpowers
-          </button>
-          <button onClick={() => scrollToSection("case-studies")} className="text-sm hover:text-primary transition-colors">
-            Case Studies
-          </button>
-          <button onClick={() => scrollToSection("writing")} className="text-sm hover:text-primary transition-colors">
-            Writing
-          </button>
-          <button onClick={() => scrollToSection("connect")} className="text-sm hover:text-primary transition-colors">
-            Connect
-          </button>
-        </div>
+          <div className="hidden lg:flex items-center gap-10">
+            {NAV_LINKS.map((link) => (
+              <button
+                key={link.target}
+                onClick={() => scrollToSection(link.target)}
+                className={cn(
+                  "relative text-sm uppercase tracking-[0.2em] text-muted-foreground transition-colors",
+                  activeSection === link.target && "text-foreground",
+                )}
+              >
+                {link.label}
+                {activeSection === link.target && (
+                  <motion.span
+                    layoutId="nav-underline"
+                    className="absolute -bottom-2 left-0 h-0.5 w-full rounded-full bg-gradient-to-r from-primary to-secondary"
+                  />
+                )}
+              </button>
+            ))}
+          </div>
 
-        <div className="flex items-center gap-4">
-          <Button variant="outline" size="sm" className="hidden md:inline-flex border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-            Download Resume
-          </Button>
-          <Button size="sm" className="bg-accent hover:bg-accent/90 glow-orange">
-            Let's Talk
-          </Button>
+          <div className="hidden md:flex items-center gap-4">
+            <Button
+              asChild
+              variant="outline"
+              size="sm"
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+            >
+              <a href="/resume.pdf" target="_blank" rel="noreferrer">
+                Download Resume
+              </a>
+            </Button>
+            <Button
+              size="sm"
+              className="bg-gradient-to-r from-[#F77F00] to-[#F48C06] text-white shadow-[0_0_25px_rgba(247,127,0,0.45)] transition-transform hover:scale-105"
+              onClick={() => scrollToSection("connect")}
+            >
+              Let's Talk
+            </Button>
+          </div>
+
+          <button
+            className="lg:hidden p-2 rounded-full border border-border bg-background/60 backdrop-blur-xl"
+            onClick={() => setIsMenuOpen(true)}
+            aria-label="Open navigation menu"
+          >
+            <Menu className="h-5 w-5" />
+          </button>
         </div>
-      </div>
-    </motion.nav>
+      </motion.nav>
+
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-40 bg-[#0D1B2A]/95 backdrop-blur-3xl"
+          >
+            <motion.div
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -20, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 120, damping: 20 }}
+              className="absolute top-6 right-6 flex flex-col gap-10"
+            >
+              <button
+                className="self-end rounded-full border border-border bg-background/80 p-2"
+                onClick={() => setIsMenuOpen(false)}
+                aria-label="Close navigation menu"
+              >
+                <X className="h-5 w-5" />
+              </button>
+
+              <div className="px-8">
+                <nav className="flex flex-col gap-6 text-right">
+                  {NAV_LINKS.map((link, idx) => (
+                    <motion.button
+                      key={link.target}
+                      onClick={() => scrollToSection(link.target)}
+                      className="text-2xl font-display text-foreground"
+                      initial={{ opacity: 0, x: 30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 * idx }}
+                    >
+                      {link.label}
+                    </motion.button>
+                  ))}
+                </nav>
+
+                <div className="mt-10 flex flex-col gap-4">
+                  <Button
+                    asChild
+                    variant="outline"
+                    size="lg"
+                    className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                  >
+                    <a href="/resume.pdf" target="_blank" rel="noreferrer">
+                      Download Resume
+                    </a>
+                  </Button>
+                  <Button
+                    size="lg"
+                    className="bg-gradient-to-r from-[#F77F00] to-[#F48C06] text-white shadow-[0_0_25px_rgba(247,127,0,0.45)]"
+                    onClick={() => scrollToSection("connect")}
+                  >
+                    Let's Talk
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

@@ -1,70 +1,102 @@
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { animate, motion, useInView, useMotionValue, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
-const MetricItem = ({ from, to, suffix = "", label, delay }: { from: number; to: number; suffix?: string; label: string; delay: number }) => {
-  const [count, setCount] = useState(from);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+interface MetricConfig {
+  from: number;
+  to: number;
+  prefix?: string;
+  suffix?: string;
+  label: string;
+  delay: number;
+}
+
+const MetricItem = ({ from, to, prefix = "", suffix = "", label, delay }: MetricConfig) => {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.6 });
+  const motionValue = useMotionValue(from);
+  const rounded = useTransform(motionValue, (latest) => Math.round(latest));
+  const [displayValue, setDisplayValue] = useState(from);
+
+  useEffect(() => {
+    const unsubscribe = rounded.on("change", (latest) => setDisplayValue(latest));
+    return () => unsubscribe();
+  }, [rounded]);
 
   useEffect(() => {
     if (!isInView) return;
 
-    const duration = 2000;
-    const steps = 60;
-    const increment = (to - from) / steps;
-    let current = from;
-    let step = 0;
+    motionValue.set(from);
+    const controls = animate(from, to, {
+      duration: 1.8,
+      ease: [0.16, 1, 0.3, 1],
+      delay,
+      onUpdate: (latest) => motionValue.set(latest),
+    });
 
-    const timer = setInterval(() => {
-      if (step < steps) {
-        current += increment;
-        setCount(Math.floor(current));
-        step++;
-      } else {
-        setCount(to);
-        clearInterval(timer);
-      }
-    }, duration / steps);
-
-    return () => clearInterval(timer);
-  }, [isInView, from, to]);
+    return () => {
+      controls.stop();
+    };
+  }, [isInView, motionValue, to, from, delay]);
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay }}
+      transition={{ duration: 0.6, delay }}
       viewport={{ once: true }}
-      className="text-center hover:scale-110 transition-transform"
+      className="group flex flex-col items-center gap-3 text-center"
     >
-      <div className="text-4xl lg:text-5xl font-display font-bold text-gold mb-2">
-        {from === 0 && to > 0 && count === to ? `${from} → ` : ""}{count}{suffix}
-      </div>
-      <div className="text-sm text-muted-foreground">{label}</div>
+      <motion.div
+        className="text-4xl font-display font-bold text-[#FFD700] md:text-5xl"
+        whileHover={{ scale: 1.08 }}
+        transition={{ type: "spring", stiffness: 220, damping: 18 }}
+      >
+        <motion.span className="drop-shadow-[0_0_22px_rgba(255,215,0,0.35)]">
+          {prefix}
+          {displayValue.toLocaleString("en-IN")}
+          {suffix}
+        </motion.span>
+      </motion.div>
+      <p className="text-sm uppercase tracking-[0.2em] text-[#B0B8C1] md:text-base">{label}</p>
     </motion.div>
   );
 };
 
 const MetricsBar = () => {
+  const metrics: MetricConfig[] = [
+    { from: 0, to: 12, prefix: "₹", suffix: " Cr/month", label: "0 → ₹12 Cr/month", delay: 0 },
+    { from: 0, to: 6000, suffix: "+", label: "0 → 6,000 users", delay: 0.15 },
+    { from: 0, to: 60, suffix: "%", label: "60% cost savings", delay: 0.3 },
+    { from: 0, to: 18, suffix: "", label: "18 AI agents built", delay: 0.45 },
+  ];
+
   return (
-    <section id="metrics" className="py-16 bg-card">
+    <section
+      id="metrics"
+      className="relative bg-[#1B2838] py-20 text-white"
+    >
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          <MetricItem from={0} to={12} suffix=" Cr/month" label="₹0 → ₹12 Cr/month" delay={0} />
-          <MetricItem from={0} to={6000} suffix=" users" label="0 → 6,000 users" delay={0.2} />
-          <MetricItem from={0} to={60} suffix="%" label="60% cost savings" delay={0.4} />
-          <MetricItem from={0} to={18} suffix="" label="18 AI agents built" delay={0.6} />
+        <div className="grid gap-10 text-center md:grid-cols-2 md:gap-12 lg:grid-cols-4">
+          {metrics.map((metric, index) => (
+            <div
+              key={metric.label}
+              className="relative flex flex-col items-center"
+            >
+              <MetricItem {...metric} />
+              {index < metrics.length - 1 && (
+                <div className="absolute right-[-24px] top-1/2 hidden h-20 -translate-y-1/2 border-r border-white/10 lg:block" />
+              )}
+            </div>
+          ))}
         </div>
 
         <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.5 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.6 }}
           viewport={{ once: true }}
-          className="text-center text-lg text-muted-foreground italic mt-10"
+          className="mt-12 text-center text-lg italic text-[#8A92A0]"
         >
           "Yeah, I move fast. Comes with the founder territory."
         </motion.p>
