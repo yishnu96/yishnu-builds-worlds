@@ -33,8 +33,8 @@ const SuperpowerCard = ({ emoji, title, description, tagline, accent, delay }: S
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay }}
       viewport={{ once: true }}
-      whileHover={{ y: -8, scale: 1.04 }}
-      className={`relative overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-br p-10 backdrop-blur-lg transition-all duration-300 hover:shadow-[0_0_40px_var(--shadow-color)] ${bg} ${glow}`}
+      whileHover={{ y: -8, scale: 1.05 }}
+      className={`relative overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-br p-10 backdrop-blur-lg transition-all duration-300 hover:shadow-[0_0_15px_var(--shadow-color)] ${bg} ${glow}`}
       style={
         {
           "--shadow-color":
@@ -63,7 +63,7 @@ const SuperpowerCard = ({ emoji, title, description, tagline, accent, delay }: S
 
 const Superpowers = () => {
   return (
-    <section id="superpowers" className="relative bg-[#0D1B2A] py-24 md:py-32">
+    <section id="superpowers" className="relative bg-[#0D1B2A] py-20 md:py-[120px]">
       <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 10% 10%, rgba(114,9,183,0.2), transparent 45%)" }} />
       <div className="container relative mx-auto px-6 md:px-24 max-w-[1400px]">
         <motion.h2

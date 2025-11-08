@@ -19,7 +19,7 @@ const REPOS = [
 
 const IBuildStuff = () => {
   return (
-    <section id="builds" className="relative bg-card py-24 md:py-32">
+    <section id="builds" className="relative bg-card py-20 md:py-[120px]">
       <div className="container relative mx-auto px-6 md:px-24">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

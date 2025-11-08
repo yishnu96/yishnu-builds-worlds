@@ -160,7 +160,7 @@ const CaseStudies = () => {
   }, [filter]);
 
   return (
-    <section id="case-studies" className="relative bg-[#0A1730] py-24 md:py-32">
+    <section id="case-studies" className="relative bg-[#0A1730] py-20 md:py-[120px]">
       <div className="absolute inset-0 opacity-40" style={{ backgroundImage: "linear-gradient(135deg, rgba(114,9,183,0.08) 0%, transparent 60%)" }} />
       <div className="container relative mx-auto px-6 md:px-24 max-w-[1400px]">
         <motion.h2

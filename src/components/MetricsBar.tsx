@@ -74,7 +74,7 @@ const MetricsBar = () => {
   return (
     <section
       id="metrics"
-      className="relative bg-[#1B2838] py-20 text-white"
+      className="relative bg-[#1B2838] py-20 md:py-[120px] text-white"
     >
       <div className="container mx-auto px-6">
         <div className="grid gap-10 text-center md:grid-cols-2 md:gap-12 lg:grid-cols-4">

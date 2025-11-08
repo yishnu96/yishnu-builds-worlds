@@ -73,7 +73,7 @@ const WritingColumn = ({ emoji, title, description, href, accent, delay, latest,
 
 const Writing = () => {
   return (
-    <section id="writing" className="relative bg-[#152235] py-24 md:py-32">
+    <section id="writing" className="relative bg-[#152235] py-20 md:py-[120px]">
       <div className="absolute inset-0 opacity-40" style={{ backgroundImage: "radial-gradient(circle at top, rgba(114,9,183,0.22), transparent 55%)" }} />
       <div className="container relative mx-auto px-6 md:px-24 max-w-[1400px]">
         <motion.h2

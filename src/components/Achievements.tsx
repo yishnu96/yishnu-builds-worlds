@@ -12,10 +12,19 @@ interface AchievementProps {
   delay: number;
 }
 
-const accentStyles: Record<AchievementProps["accent"], string> = {
-  purple: "from-[#1B2838] via-[#121D2C] to-[#0D1B2A] border-l-4 border-[#7209B7]",
-  green: "from-[#112238] via-[#0D1B2A] to-[#0A1A29] border-r-4 border-[#06D6A0]",
-  orange: "from-[#1E2F42] via-[#0D1B2A] to-[#0A1A29] border-l-4 border-[#F77F00]",
+const accentStyles: Record<AchievementProps["accent"], { border: string; glow: string }> = {
+  purple: {
+    border: "border-l-4 border-[#7209B7]",
+    glow: "hover:shadow-[0_0_15px_#7209B7]",
+  },
+  green: {
+    border: "border-r-4 border-[#06D6A0]",
+    glow: "hover:shadow-[0_0_15px_#06D6A0]",
+  },
+  orange: {
+    border: "border-l-4 border-[#F77F00]",
+    glow: "hover:shadow-[0_0_15px_#F77F00]",
+  },
 };
 
 const highlightAccent: Record<AchievementProps["accent"], string> = {
@@ -33,8 +42,12 @@ const AchievementBlock = ({ emoji, title, intro, highlights, logos, translation,
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay }}
       viewport={{ once: true }}
-      whileHover={{ scale: 1.015, y: -6 }}
-      className={`group relative overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-br p-10 shadow-[0_25px_80px_rgba(3,10,22,0.45)] transition-transform duration-500 ${accentStyles[accent]}`}
+      whileHover={{ scale: 1.05, y: -6 }}
+      className={cn(
+        "group relative overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-br from-[#1B2838] via-[#121D2C] to-[#0D1B2A] p-10 shadow-[0_25px_80px_rgba(3,10,22,0.45)] transition-all duration-300",
+        accentStyles[accent].border,
+        accentStyles[accent].glow
+      )}
     >
       <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
         <div
@@ -106,7 +119,7 @@ const AchievementBlock = ({ emoji, title, intro, highlights, logos, translation,
 
 const Achievements = () => {
   return (
-    <section id="work" className="bg-[#0D1B2A] py-24 md:py-32">
+    <section id="work" className="bg-[#0D1B2A] py-20 md:py-[120px]">
       <div className="container mx-auto px-6 md:px-24 max-w-[1400px]">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}

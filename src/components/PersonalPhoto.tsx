@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const PersonalPhoto = () => {
   return (
-    <section id="about" className="relative bg-background py-24 md:py-32">
+    <section id="about" className="relative bg-background py-20 md:py-[120px]">
       <div className="container relative mx-auto px-6 md:px-24">
         <div className="grid items-center gap-16 lg:grid-cols-[40%,60%]">
           {/* Photo Container - Left Side */}

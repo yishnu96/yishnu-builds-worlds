@@ -91,14 +91,14 @@ const Hero = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-[#7209B7] text-[#7209B7] transition-transform hover:-translate-y-1 hover:bg-[#7209B7] hover:text-white"
+                className="w-full sm:w-auto border-[#7209B7] text-[#7209B7] transition-transform hover:-translate-y-1 hover:bg-[#7209B7] hover:text-white"
                 onClick={scrollToNext}
               >
                 View My Work <ArrowDown className="ml-2 h-4 w-4" />
               </Button>
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-[#F77F00] via-[#F77F00] to-[#FF9F1C] text-white shadow-[0_8px_35px_rgba(247,127,0,0.35)] transition-transform hover:scale-[1.05]"
+                className="w-full sm:w-auto bg-gradient-to-r from-[#F77F00] via-[#F77F00] to-[#FF9F1C] text-white shadow-[0_8px_35px_rgba(247,127,0,0.35)] transition-transform hover:scale-[1.05]"
                 onClick={scrollToConnect}
               >
                 Let's Talk <ArrowRight className="ml-2 h-4 w-4" />

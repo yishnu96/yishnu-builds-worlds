@@ -76,7 +76,7 @@ const Navigation = () => {
                 {activeSection === link.target && (
                   <motion.span
                     layoutId="nav-underline"
-                    className="absolute -bottom-2 left-0 h-[3px] w-full rounded-full bg-gradient-to-r from-primary to-secondary"
+                    className="absolute -bottom-2 left-0 h-[3px] w-full rounded-full bg-primary"
                     transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                   />
                 )}

@@ -74,7 +74,7 @@ const SOCIAL_LINKS = [
 
 const SocialConnect = () => {
   return (
-    <section id="connect" className="relative bg-[#0D1B2A] py-24 md:py-32">
+    <section id="connect" className="relative bg-[#0D1B2A] py-20 md:py-[120px]">
       <div className="absolute inset-0 opacity-35" style={{ backgroundImage: "radial-gradient(circle at center, rgba(6,214,160,0.18), transparent 55%)" }} />
       <div className="container relative mx-auto px-6 md:px-24 max-w-[1400px]">
         <motion.h2
@@ -135,7 +135,7 @@ const SocialConnect = () => {
           <Button
             asChild
             size="lg"
-            className="h-14 rounded-full bg-gradient-to-r from-[#7209B7] to-[#06D6A0] px-8 text-white shadow-[0_18px_60px_rgba(114,9,183,0.35)] transition-transform hover:scale-[1.03]"
+            className="w-full sm:w-auto h-14 rounded-full bg-gradient-to-r from-[#7209B7] to-[#06D6A0] px-8 text-white shadow-[0_18px_60px_rgba(114,9,183,0.35)] transition-transform hover:scale-[1.03]"
           >
             <a href="/resume.pdf" download>
               <Download className="mr-2 h-5 w-5" /> Download My Resume
@@ -144,7 +144,7 @@ const SocialConnect = () => {
           <Button
             asChild
             size="lg"
-            className="h-14 rounded-full bg-gradient-to-r from-[#F77F00] to-[#FF9F1C] px-8 text-white shadow-[0_18px_60px_rgba(247,127,0,0.35)] transition-transform hover:scale-[1.03]"
+            className="w-full sm:w-auto h-14 rounded-full bg-gradient-to-r from-[#F77F00] to-[#FF9F1C] px-8 text-white shadow-[0_18px_60px_rgba(247,127,0,0.35)] transition-transform hover:scale-[1.03]"
           >
             <a href="https://cal.com/yishnu/30min" target="_blank" rel="noreferrer">
               <Calendar className="mr-2 h-5 w-5" /> Schedule a Call

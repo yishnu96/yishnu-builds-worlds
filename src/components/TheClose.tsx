@@ -10,7 +10,7 @@ const points = [
 
 const TheClose = () => {
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden bg-gradient-to-b from-[#06101F] via-[#0D1B2A] to-[#050B15] py-24">
+    <section className="relative flex min-h-screen items-center overflow-hidden bg-gradient-to-b from-[#06101F] via-[#0D1B2A] to-[#050B15] py-20 md:py-[120px]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(114,9,183,0.24),transparent_60%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(6,214,160,0.18),transparent_60%)]" />
       <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "linear-gradient(120deg, rgba(255,255,255,0.05) 0%, transparent 55%)" }} />
@@ -85,7 +85,7 @@ const TheClose = () => {
           >
             <Button
               size="lg"
-              className="h-14 rounded-full bg-gradient-to-r from-[#7209B7] via-[#06D6A0] to-[#F77F00] px-10 text-white shadow-[0_20px_70px_rgba(114,9,183,0.35)] transition-transform hover:scale-[1.03]"
+              className="w-full sm:w-auto h-14 rounded-full bg-gradient-to-r from-[#7209B7] via-[#06D6A0] to-[#F77F00] px-10 text-white shadow-[0_20px_70px_rgba(114,9,183,0.35)] transition-transform hover:scale-[1.03]"
               onClick={() => document.getElementById("connect")?.scrollIntoView({ behavior: "smooth" })}
             >
               Let's Build Something <ArrowRight className="ml-2 h-5 w-5" />
@@ -93,7 +93,7 @@ const TheClose = () => {
             <Button
               size="lg"
               variant="outline"
-              className="h-14 rounded-full border-[#F77F00] bg-transparent px-10 text-[#F77F00] transition-colors hover:bg-[#F77F00] hover:text-white"
+              className="w-full sm:w-auto h-14 rounded-full border-[#F77F00] bg-transparent px-10 text-[#F77F00] transition-colors hover:bg-[#F77F00] hover:text-white"
               onClick={() => document.getElementById("connect")?.scrollIntoView({ behavior: "smooth" })}
             >
               Or Just Say Hi 👋

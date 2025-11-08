@@ -46,6 +46,7 @@ All colors MUST be HSL.
     --shadow-glow: 0 0 40px hsl(276 89% 39% / 0.4);
     --shadow-glow-green: 0 0 40px hsl(162 85% 45% / 0.4);
     --shadow-glow-orange: 0 0 40px hsl(31 96% 51% / 0.4);
+    --shadow-glow-red: 0 0 40px hsl(0 84% 60% / 0.4);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
@@ -56,10 +57,18 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-muted-foreground;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     background-color: hsl(var(--background));
     position: relative;
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 768px) {
+    body {
+      font-size: 16px;
+    }
   }
 
   html {
@@ -67,7 +76,25 @@ All colors MUST be HSL.
   }
 
   h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-foreground;
     font-family: 'Poppins', 'Inter', sans-serif;
+    line-height: 1.2; /* Add a tight line-height for headings */
+  }
+
+  h1 {
+    @apply text-[40px] md:text-[60px];
+  }
+
+  h2 {
+    @apply text-[32px] md:text-[48px];
+  }
+
+  h3 {
+    @apply text-[28px] md:text-[36px];
+  }
+
+  h4 {
+    @apply text-[20px] md:text-[24px];
   }
 }
 
@@ -81,15 +108,19 @@ All colors MUST be HSL.
   }
 
   .glow-purple {
-    box-shadow: 0 0 40px hsl(274 87% 44% / 0.4);
+    box-shadow: 0 0 15px hsl(274 87% 44% / 0.4);
   }
 
   .glow-green {
-    box-shadow: 0 0 40px hsl(165 82% 44% / 0.4);
+    box-shadow: 0 0 15px hsl(165 82% 44% / 0.4);
   }
 
   .glow-orange {
-    box-shadow: 0 0 40px hsl(28 98% 49% / 0.4);
+    box-shadow: 0 0 15px hsl(28 98% 49% / 0.4);
+  }
+
+  .glow-red {
+    box-shadow: 0 0 15px hsl(0 84% 60% / 0.4);
   }
 
   .animate-float {
