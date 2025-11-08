@@ -70,7 +70,7 @@ const TheClose = () => {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.8 }}
             viewport={{ once: true }}
-            className="mt-10 text-sm italic text-[#8A92A0] md:text-base"
+            className="mt-10 text-sm italic text-[#8A92A0] leading-[1.7] md:text-base"
           >
             Fair warning: I work with founders and teams who move fast. If your sprint planning takes longer than your sprints, we might not vibe
             <span className="inline-block align-middle"> 😅</span>

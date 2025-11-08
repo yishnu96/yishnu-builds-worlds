@@ -38,10 +38,10 @@ const WritingColumn = ({ emoji, title, description, href, accent, delay, latest,
       className={`relative overflow-hidden rounded-[32px] border border-white/5 bg-gradient-to-br p-12 ${styles.gradient} ${styles.glow}`}
     >
       <span className="text-5xl drop-shadow-[0_12px_45px_rgba(114,9,183,0.25)]">{emoji}</span>
-      <h3 className="mt-6 font-display text-3xl text-white">{title}</h3>
+      <h3 className="mt-6 font-display text-3xl text-white leading-tight">{title}</h3>
       <p className="mt-3 text-sm uppercase tracking-[0.3em] text-[#8A92A0]">{subtitle}</p>
-      <p className="mt-4 text-base leading-7 text-[#B0B8C1]">{description}</p>
-      <p className="mt-6 text-sm italic text-[#8A92A0]">Because PMs are humans too.</p>
+      <p className="mt-4 text-base md:text-lg leading-[1.7] text-[#B0B8C1]">{description}</p>
+      <p className="mt-6 text-sm italic text-[#8A92A0] leading-[1.7]">Because PMs are humans too.</p>
 
       <div className="mt-6 space-y-2">
         {latest.map((item) => (
@@ -75,13 +75,13 @@ const Writing = () => {
   return (
     <section id="writing" className="relative bg-[#152235] py-24 md:py-32">
       <div className="absolute inset-0 opacity-40" style={{ backgroundImage: "radial-gradient(circle at top, rgba(114,9,183,0.22), transparent 55%)" }} />
-      <div className="container relative mx-auto px-6">
+      <div className="container relative mx-auto px-6 md:px-24 max-w-[1400px]">
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center font-display text-4xl text-white md:text-5xl"
+          className="text-center font-display text-4xl md:text-5xl text-white leading-tight"
         >
           I Write Stuff Too <motion.span animate={{ rotate: [0, -10, 10, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>✍️</motion.span>
         </motion.h2>
@@ -90,7 +90,7 @@ const Writing = () => {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="mx-auto mt-6 max-w-2xl text-center text-base text-[#B0B8C1]"
+          className="mx-auto mt-6 max-w-2xl text-center text-base md:text-lg text-[#B0B8C1] leading-[1.7]"
         >
           When I'm not turning whiteboards into revenue, I'm thinking out loud about Bollywood, culture, product, and AI craft.
         </motion.p>

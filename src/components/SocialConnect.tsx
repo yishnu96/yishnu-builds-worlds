@@ -76,13 +76,13 @@ const SocialConnect = () => {
   return (
     <section id="connect" className="relative bg-[#0D1B2A] py-24 md:py-32">
       <div className="absolute inset-0 opacity-35" style={{ backgroundImage: "radial-gradient(circle at center, rgba(6,214,160,0.18), transparent 55%)" }} />
-      <div className="container relative mx-auto px-6">
+      <div className="container relative mx-auto px-6 md:px-24 max-w-[1400px]">
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center font-display text-4xl text-white md:text-5xl"
+          className="text-center font-display text-4xl md:text-5xl text-white leading-tight"
         >
           I'm Everywhere (Pick Your Poison) <motion.span animate={{ rotate: [0, -12, 12, 0] }} transition={{ duration: 4, repeat: Infinity }}>🌐</motion.span>
         </motion.h2>
@@ -92,7 +92,7 @@ const SocialConnect = () => {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="mx-auto mt-6 max-w-2xl text-center text-base text-[#B0B8C1]"
+          className="mx-auto mt-6 max-w-2xl text-center text-base md:text-lg text-[#B0B8C1] leading-[1.7]"
         >
           Pick the channel that fits your vibe. Whichever you tap, expect energy, clarity, and a calendar invite.
         </motion.p>

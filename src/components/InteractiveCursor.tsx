@@ -54,7 +54,6 @@ const InteractiveCursor = () => {
   const cursorStyles = useMemo(
     () => ({
       opacity: isVisible ? 1 : 0,
-      transition: { duration: 0.2, ease: "easeOut" },
     }),
     [isVisible],
   );
@@ -63,13 +62,13 @@ const InteractiveCursor = () => {
     <>
       <motion.div
         className="custom-cursor-ring pointer-events-none fixed z-[100] hidden lg:block h-10 w-10 rounded-full"
-        style={{ translateX: ringX, translateY: ringY }}
-        animate={cursorStyles}
+        style={{ translateX: ringX, translateY: ringY, opacity: isVisible ? 1 : 0 }}
+        transition={{ duration: 0.2 }}
       />
       <motion.div
         className="custom-cursor-dot pointer-events-none fixed z-[100] hidden lg:block h-2.5 w-2.5 rounded-full bg-gradient-purple"
-        style={{ translateX: dotX, translateY: dotY }}
-        animate={cursorStyles}
+        style={{ translateX: dotX, translateY: dotY, opacity: isVisible ? 1 : 0 }}
+        transition={{ duration: 0.2 }}
       />
     </>
   );

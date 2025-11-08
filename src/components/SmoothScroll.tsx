@@ -6,12 +6,10 @@ const SmoothScroll = () => {
     const lenis = new Lenis({
       duration: 1.1,
       smoothWheel: true,
-      smoothTouch: false,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
 
-    // @ts-expect-error - expose lenis for imperative scroll usage
-    window.__lenis = lenis;
+    (window as any).__lenis = lenis;
 
     let animationFrame: number;
 
@@ -24,8 +22,7 @@ const SmoothScroll = () => {
 
     return () => {
       cancelAnimationFrame(animationFrame);
-      // @ts-expect-error cleanup
-      delete window.__lenis;
+      delete (window as any).__lenis;
       lenis.destroy();
     };
   }, []);

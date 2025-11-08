@@ -21,13 +21,13 @@ const EngineerPM = () => {
       <div className="absolute inset-y-0 left-0 w-1/2 bg-[radial-gradient(circle_at_top_left,rgba(114,9,183,0.25),transparent_60%)]" />
       <div className="absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(circle_at_bottom_right,rgba(6,214,160,0.2),transparent_60%)]" />
 
-      <div className="container relative mx-auto px-6">
+      <div className="container relative mx-auto px-6 md:px-24 max-w-[1400px]">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mx-auto mb-16 max-w-3xl text-center font-display text-4xl text-white md:text-5xl"
+          className="mx-auto mb-16 max-w-3xl text-center font-display text-4xl md:text-5xl text-white leading-tight"
         >
           Here's Why CTOs Actually Like Working With Me
         </motion.h2>
@@ -130,7 +130,7 @@ buildMomentum();`}
                   </motion.li>
                 ))}
               </ul>
-              <p className="pt-4 text-lg italic text-[#FFD700]">Translation: I'm a PM who can ship. Fast.</p>
+              <p className="pt-4 text-lg italic text-[#FFD700] leading-[1.7]">Translation: I'm a PM who can ship. Fast.</p>
             </div>
 
             <div className="pt-6">

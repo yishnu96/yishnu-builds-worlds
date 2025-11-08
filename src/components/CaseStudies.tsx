@@ -162,13 +162,13 @@ const CaseStudies = () => {
   return (
     <section id="case-studies" className="relative bg-[#0A1730] py-24 md:py-32">
       <div className="absolute inset-0 opacity-40" style={{ backgroundImage: "linear-gradient(135deg, rgba(114,9,183,0.08) 0%, transparent 60%)" }} />
-      <div className="container relative mx-auto px-6">
+      <div className="container relative mx-auto px-6 md:px-24 max-w-[1400px]">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center font-display text-4xl text-white md:text-5xl"
+          className="text-center font-display text-4xl md:text-5xl text-white leading-tight"
         >
           Some Things I've Built (The Full Stories)
         </motion.h2>
@@ -246,7 +246,7 @@ const CaseStudies = () => {
                     </div>
                     <Button
                       variant="outline"
-                      className="group border-[#7209B7] text-white hover:bg-gradient-to-r hover:from-[#7209B7] hover:to-[#06D6A0]"
+                      className="group border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                     >
                       Read Full Story
                       <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />

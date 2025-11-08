@@ -50,7 +50,7 @@ const Navigation = () => {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           scrolled
-            ? "bg-[#0D1B2A]/90 backdrop-blur-xl border-b border-border shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
+            ? "bg-[#0D1B2A]/90 backdrop-blur-[12px] border-b border-border shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
             : "bg-transparent",
         )}
       >
@@ -76,7 +76,8 @@ const Navigation = () => {
                 {activeSection === link.target && (
                   <motion.span
                     layoutId="nav-underline"
-                    className="absolute -bottom-2 left-0 h-0.5 w-full rounded-full bg-gradient-to-r from-primary to-secondary"
+                    className="absolute -bottom-2 left-0 h-[3px] w-full rounded-full bg-gradient-to-r from-primary to-secondary"
+                    transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                   />
                 )}
               </button>

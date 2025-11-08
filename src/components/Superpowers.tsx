@@ -34,7 +34,17 @@ const SuperpowerCard = ({ emoji, title, description, tagline, accent, delay }: S
       transition={{ duration: 0.6, delay }}
       viewport={{ once: true }}
       whileHover={{ y: -8, scale: 1.04 }}
-      className={`relative overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-br p-10 backdrop-blur-lg transition-all duration-500 ${bg} ${glow}`}
+      className={`relative overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-br p-10 backdrop-blur-lg transition-all duration-300 hover:shadow-[0_0_40px_var(--shadow-color)] ${bg} ${glow}`}
+      style={
+        {
+          "--shadow-color":
+            accent === "purple"
+              ? "rgba(114, 9, 183, 0.5)"
+              : accent === "green"
+                ? "rgba(6, 214, 160, 0.5)"
+                : "rgba(247, 127, 0, 0.5)",
+        } as React.CSSProperties
+      }
     >
       <motion.span
         className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-5xl"
@@ -44,9 +54,9 @@ const SuperpowerCard = ({ emoji, title, description, tagline, accent, delay }: S
         {emoji}
       </motion.span>
 
-      <h3 className="font-display text-2xl text-white md:text-3xl">{title}</h3>
-      <p className="mt-4 text-base leading-7 text-[#B0B8C1] md:text-lg">{description}</p>
-      <p className="mt-6 text-sm italic text-[#8A92A0]">{tagline}</p>
+      <h3 className="font-display text-2xl md:text-3xl text-white leading-tight">{title}</h3>
+      <p className="mt-4 text-base md:text-lg leading-[1.7] text-[#B0B8C1]">{description}</p>
+      <p className="mt-6 text-sm italic text-[#8A92A0] leading-[1.7]">{tagline}</p>
     </motion.div>
   );
 };
@@ -55,13 +65,13 @@ const Superpowers = () => {
   return (
     <section id="superpowers" className="relative bg-[#0D1B2A] py-24 md:py-32">
       <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 10% 10%, rgba(114,9,183,0.2), transparent 45%)" }} />
-      <div className="container relative mx-auto px-6">
+      <div className="container relative mx-auto px-6 md:px-24 max-w-[1400px]">
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mx-auto mb-20 max-w-3xl text-center font-display text-4xl text-white md:text-5xl"
+          className="mx-auto mb-20 max-w-3xl text-center font-display text-4xl md:text-5xl text-white leading-tight"
         >
           My Superpowers (No Cape Required)
         </motion.h2>
