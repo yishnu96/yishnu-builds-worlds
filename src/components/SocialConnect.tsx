@@ -82,9 +82,9 @@ const SocialConnect = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center font-display text-4xl md:text-5xl text-white leading-tight"
+          className="text-center font-display text-[32px] md:text-[40px] text-white leading-tight"
         >
-          I'm Everywhere (Pick Your Poison) <motion.span animate={{ rotate: [0, -12, 12, 0] }} transition={{ duration: 4, repeat: Infinity }}>🌐</motion.span>
+          I'm Everywhere (Pick Your Poison) <motion.span className="inline-block text-[72px]" animate={{ rotate: [0, -12, 12, 0] }} transition={{ duration: 4, repeat: Infinity }}>🌐</motion.span>
         </motion.h2>
 
         <motion.p
@@ -111,10 +111,10 @@ const SocialConnect = () => {
                 href={social.href}
                 target="_blank"
                 rel="noreferrer"
-                className="group flex h-[120px] flex-col items-center justify-center gap-3 rounded-3xl border border-white/5 bg-[#101E33]/80 backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:border-[#7209B7]"
+                className="group flex h-[120px] flex-col items-center justify-center gap-3 rounded-3xl border border-white/5 bg-[#1B2838]/80 backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:border-[#7209B7]"
               >
                 <span className={`flex h-12 w-12 items-center justify-center rounded-full text-white ${social.color}`}>
-                  <social.icon className="h-6 w-6" />
+                  <social.icon className="h-6 w-6 md:h-8 md:w-8" />
                 </span>
                 <span className="text-sm font-medium text-white">{social.label}</span>
               </a>

@@ -17,7 +17,7 @@ const stackItems = [
 
 const EngineerPM = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#08101F] via-[#0D1B2A] to-[#091325] py-24 md:py-32">
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#0D1B2A] via-[#1B2838] to-[#0D1B2A] py-20 md:py-[120px]">
       <div className="absolute inset-y-0 left-0 w-1/2 bg-[radial-gradient(circle_at_top_left,rgba(114,9,183,0.25),transparent_60%)]" />
       <div className="absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(circle_at_bottom_right,rgba(6,214,160,0.2),transparent_60%)]" />
 
@@ -27,7 +27,7 @@ const EngineerPM = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mx-auto mb-16 max-w-3xl text-center font-display text-4xl md:text-5xl text-white leading-tight"
+          className="mx-auto mb-16 max-w-3xl text-center font-display text-[32px] md:text-[40px] text-white leading-tight"
         >
           Here's Why CTOs Actually Like Working With Me
         </motion.h2>
@@ -40,7 +40,7 @@ const EngineerPM = () => {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="relative rounded-[32px] border border-white/10 bg-[#0F192A]/90 p-6 shadow-[0_25px_80px_rgba(3,10,22,0.6)]">
+            <div className="relative rounded-[32px] border border-white/10 bg-[#1B2838]/90 p-6 shadow-[0_15px_40px_rgba(3,10,22,0.25)]">
               <div className="flex items-center gap-2 text-xs text-[#8A92A0]">
                 <span className="h-3 w-3 rounded-full bg-[#FF5F57]" />
                 <span className="h-3 w-3 rounded-full bg-[#FFBD2E]" />
@@ -50,9 +50,7 @@ const EngineerPM = () => {
 
               <div className="mt-6 grid gap-5 font-mono text-sm text-[#B0B8C1]">
                 <motion.pre
-                  className="overflow-x-auto rounded-2xl border border-white/5 bg-[#0A1524]/80 p-6"
-                  animate={{ boxShadow: ["0 0 0 rgba(114,9,183,0.2)", "0 0 45px rgba(114,9,183,0.45)", "0 0 0 rgba(114,9,183,0.2)"] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                  className="overflow-x-auto rounded-2xl border border-white/5 bg-[#0D1B2A]/80 p-6"
                 >
 {`// Most PMs write specs.
 // I prototype MVPs.
@@ -73,7 +71,7 @@ buildMomentum();`}
                 </motion.pre>
 
                 <motion.div
-                  className="grid gap-3 rounded-2xl border border-white/5 bg-[#0A1524]/80 p-5"
+                  className="grid gap-3 rounded-2xl border border-white/5 bg-[#0D1B2A]/80 p-5"
                   animate={{ y: [0, -6, 0] }}
                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                 >
@@ -108,7 +106,7 @@ buildMomentum();`}
             viewport={{ once: true }}
             className="space-y-7 text-white"
           >
-            <h3 className="font-display text-3xl md:text-[38px]">
+            <h3 className="font-display text-2xl">
               Most PMs write specs.
               <br />I prototype MVPs in days.
             </h3>

@@ -32,7 +32,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-white/5 bg-[#0A1524] py-12 md:py-16">
+    <footer className="border-t border-white/5 bg-[#0D1B2A] py-12 md:py-16">
       <div className="container mx-auto px-6">
         <div className="grid gap-10 md:grid-cols-3 md:items-center">
           <div className="space-y-3 text-center md:text-left">
@@ -65,7 +65,7 @@ const Footer = () => {
                 whileHover={{ scale: 1.15, y: -4 }}
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-[#B0B8C1] transition-colors hover:border-[#7209B7] hover:text-white"
               >
-                <Icon className="h-4 w-4" />
+                <Icon className="h-5 w-5" />
               </motion.a>
             ))}
           </div>

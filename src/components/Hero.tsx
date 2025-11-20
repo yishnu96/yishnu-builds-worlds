@@ -53,14 +53,14 @@ const Hero = () => {
               <p className="text-lg text-[#B0B8C1] tracking-[0.2em] uppercase">
                 Hey, I'm Yishnu
                 <motion.span
-                  className="ml-3 inline-block"
+                  className="ml-3 inline-block text-[40px]"
                   animate={{ rotate: [0, 12, -6, 0] }}
                   transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                 >
                   👋
                 </motion.span>
               </p>
-              <h1 className="font-display text-5xl leading-tight text-white md:text-6xl xl:text-[72px]">
+              <h1 className="font-display text-5xl leading-tight text-white md:text-5xl">
                 I build products that go from
                 <br />
                 <span className="text-white/80">"just an idea"</span> to

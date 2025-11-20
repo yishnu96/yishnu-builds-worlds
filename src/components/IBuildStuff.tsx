@@ -28,8 +28,8 @@ const IBuildStuff = () => {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <h2 className="font-display text-4xl md:text-5xl text-foreground mb-4">
-            I Build Stuff Too 🛠️
+          <h2 className="font-display text-[32px] md:text-[40px] text-foreground mb-4">
+            I Build Stuff Too <span className="text-[72px]">🛠️</span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Because talking is cheap. Here's what I actually ship.
@@ -44,10 +44,10 @@ const IBuildStuff = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
             whileHover={{ y: -10 }}
-            className="group relative overflow-hidden rounded-2xl border border-primary/30 bg-gradient-to-br from-card to-muted/20 p-10 shadow-[0_20px_60px_rgba(114,9,183,0.2)] transition-all duration-300 hover:shadow-[0_20px_80px_rgba(114,9,183,0.4)]"
+            className="group relative overflow-hidden rounded-2xl border border-primary/30 bg-gradient-to-br from-card to-muted/20 p-10 shadow-[0_10px_30px_rgba(114,9,183,0.15)] transition-all duration-300"
           >
             <div className="relative z-10">
-              <div className="mb-6 text-6xl">🤖</div>
+              <div className="mb-6 text-[72px]">🤖</div>
               <h3 className="font-display text-3xl text-foreground mb-4">
                 AI Automations
               </h3>
@@ -77,13 +77,12 @@ const IBuildStuff = () => {
                 ))}
               </div>
 
-              <Button
-                variant="outline"
-                className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground group"
+              <a
+                href="#"
+                className="inline-flex items-center gap-2 text-[#7209B7] transition-colors hover:underline"
               >
-                View All Automations
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
+                View All Automations →
+              </a>
             </div>
 
             {/* Background decoration */}
@@ -97,10 +96,10 @@ const IBuildStuff = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
             whileHover={{ y: -10 }}
-            className="group relative overflow-hidden rounded-2xl border border-secondary/30 bg-gradient-to-br from-card to-muted/20 p-10 shadow-[0_20px_60px_rgba(6,214,160,0.2)] transition-all duration-300 hover:shadow-[0_20px_80px_rgba(6,214,160,0.4)]"
+            className="group relative overflow-hidden rounded-2xl border border-secondary/30 bg-gradient-to-br from-card to-muted/20 p-10 shadow-[0_10px_30px_rgba(6,214,160,0.15)] transition-all duration-300"
           >
             <div className="relative z-10">
-              <div className="mb-6 text-6xl">💻</div>
+              <div className="mb-6 text-[72px]">💻</div>
               <h3 className="font-display text-3xl text-foreground mb-4">
                 Open Source & Code
               </h3>
@@ -130,13 +129,12 @@ const IBuildStuff = () => {
                 ))}
               </div>
 
-              <Button
-                variant="outline"
-                className="w-full border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground group"
+              <a
+                href="#"
+                className="inline-flex items-center gap-2 text-[#7209B7] transition-colors hover:underline"
               >
-                View GitHub Profile
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
+                View GitHub Profile →
+              </a>
             </div>
 
             {/* Background decoration */}

@@ -15,15 +15,15 @@ interface AchievementProps {
 const accentStyles: Record<AchievementProps["accent"], { border: string; glow: string }> = {
   purple: {
     border: "border-l-4 border-[#7209B7]",
-    glow: "hover:shadow-[0_0_15px_#7209B7]",
+    glow: "",
   },
   green: {
     border: "border-r-4 border-[#06D6A0]",
-    glow: "hover:shadow-[0_0_15px_#06D6A0]",
+    glow: "",
   },
   orange: {
     border: "border-l-4 border-[#F77F00]",
-    glow: "hover:shadow-[0_0_15px_#F77F00]",
+    glow: "",
   },
 };
 
@@ -44,7 +44,7 @@ const AchievementBlock = ({ emoji, title, intro, highlights, logos, translation,
       viewport={{ once: true }}
       whileHover={{ scale: 1.05, y: -6 }}
       className={cn(
-        "group relative overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-br from-[#1B2838] via-[#121D2C] to-[#0D1B2A] p-10 shadow-[0_25px_80px_rgba(3,10,22,0.45)] transition-all duration-300",
+        "group relative overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-br from-[#1B2838] to-[#0D1B2A] p-10 shadow-[0_25px_80px_rgba(3,10,22,0.45)] transition-all duration-300",
         accentStyles[accent].border,
         accentStyles[accent].glow
       )}
@@ -65,10 +65,10 @@ const AchievementBlock = ({ emoji, title, intro, highlights, logos, translation,
           isReverse ? "lg:flex-row-reverse" : "lg:flex-row",
         )}
       >
-        <div className="text-6xl drop-shadow-[0_8px_30px_rgba(114,9,183,0.35)] lg:text-7xl">{emoji}</div>
+        <div className="text-[56px]">{emoji}</div>
 
         <div className="max-w-2xl space-y-5">
-          <h3 className="font-display text-3xl text-white md:text-[34px]">{title}</h3>
+          <h3 className="font-display text-2xl text-white">{title}</h3>
           <p className="text-lg text-[#B0B8C1]">{intro}</p>
           <ul className="space-y-3 text-[#B0B8C1]">
             {highlights.map((point, idx) => (
@@ -126,9 +126,9 @@ const Achievements = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="mb-20 text-center font-display text-4xl md:text-5xl text-white leading-tight"
+          className="mb-20 text-center font-display text-[32px] md:text-[40px] text-white leading-tight"
         >
-          Okay, Let Me Brag a Little <motion.span animate={{ y: [0, -6, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}>🚀</motion.span>
+          Okay, Let Me Brag a Little <motion.span className="inline-block text-[72px]" animate={{ y: [0, -6, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}>🚀</motion.span>
         </motion.h2>
 
         <div className="space-y-[100px]">

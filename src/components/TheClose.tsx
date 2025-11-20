@@ -10,7 +10,7 @@ const points = [
 
 const TheClose = () => {
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden bg-gradient-to-b from-[#06101F] via-[#0D1B2A] to-[#050B15] py-20 md:py-[120px]">
+    <section className="relative flex min-h-screen items-center overflow-hidden bg-gradient-to-b from-[#0D1B2A] via-[#1B2838] to-[#0D1B2A] py-20 md:py-[120px]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(114,9,183,0.24),transparent_60%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(6,214,160,0.18),transparent_60%)]" />
       <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "linear-gradient(120deg, rgba(255,255,255,0.05) 0%, transparent 55%)" }} />
@@ -22,7 +22,7 @@ const TheClose = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
-            className="font-display text-4xl md:text-6xl"
+            className="font-display text-[32px] md:text-[40px]"
           >
             Still Reading? Cool. Here's the Deal.
           </motion.h2>
@@ -73,7 +73,7 @@ const TheClose = () => {
             className="mt-10 text-sm italic text-[#8A92A0] leading-[1.7] md:text-base"
           >
             Fair warning: I work with founders and teams who move fast. If your sprint planning takes longer than your sprints, we might not vibe
-            <span className="inline-block align-middle"> 😅</span>
+            <span className="inline-block align-middle text-[40px]"> 😅</span>
           </motion.p>
 
           <motion.div
@@ -93,7 +93,7 @@ const TheClose = () => {
             <Button
               size="lg"
               variant="outline"
-              className="w-full sm:w-auto h-14 rounded-full border-[#F77F00] bg-transparent px-10 text-[#F77F00] transition-colors hover:bg-[#F77F00] hover:text-white"
+              className="w-full sm:w-auto h-14 rounded-full border-[#7209B7] bg-transparent px-10 text-[#7209B7] transition-colors hover:bg-[#7209B7] hover:text-white"
               onClick={() => document.getElementById("connect")?.scrollIntoView({ behavior: "smooth" })}
             >
               Or Just Say Hi 👋

@@ -160,7 +160,7 @@ const CaseStudies = () => {
   }, [filter]);
 
   return (
-    <section id="case-studies" className="relative bg-[#0A1730] py-20 md:py-[120px]">
+    <section id="case-studies" className="relative bg-[#0D1B2A] py-20 md:py-[120px]">
       <div className="absolute inset-0 opacity-40" style={{ backgroundImage: "linear-gradient(135deg, rgba(114,9,183,0.08) 0%, transparent 60%)" }} />
       <div className="container relative mx-auto px-6 md:px-24 max-w-[1400px]">
         <motion.h2
@@ -168,7 +168,7 @@ const CaseStudies = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center font-display text-4xl md:text-5xl text-white leading-tight"
+          className="text-center font-display text-[32px] md:text-[40px] text-white leading-tight"
         >
           Some Things I've Built (The Full Stories)
         </motion.h2>
@@ -189,7 +189,7 @@ const CaseStudies = () => {
                 className={cn(
                   "rounded-full border px-6 py-2 text-sm uppercase tracking-[0.2em] transition-all duration-300",
                   isActive
-                    ? "border-transparent bg-gradient-to-r from-[#7209B7] to-[#06D6A0] text-white shadow-[0_10px_35px_rgba(8,50,70,0.35)]"
+                    ? "border-transparent bg-[#7209B7] text-white"
                     : "border-white/20 text-[#B0B8C1] hover:border-[#7209B7] hover:text-white",
                 )}
               >
@@ -220,7 +220,7 @@ const CaseStudies = () => {
                 >
                   <motion.div
                     whileHover={{ scale: 1.02 }}
-                    className="order-2 overflow-hidden rounded-3xl border border-white/5 bg-[#101E33] shadow-[0_20px_60px_rgba(6,12,24,0.45)] lg:order-1"
+                    className="order-2 overflow-hidden rounded-3xl border border-white/5 bg-[#1B2838] shadow-[0_20px_60px_rgba(6,12,24,0.45)] lg:order-1"
                   >
                     <div className="relative aspect-[16/9] w-full overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-br from-[#7209B7]/40 via-transparent to-[#06D6A0]/30" />
@@ -230,7 +230,7 @@ const CaseStudies = () => {
 
                   <div className="order-1 space-y-6 text-white lg:order-2">
                     <p className="text-sm uppercase tracking-[0.3em] text-[#06D6A0]">{project.heroMetric}</p>
-                    <h3 className="font-display text-3xl md:text-[40px]">{project.name}</h3>
+                    <h3 className="font-display text-2xl">{project.name}</h3>
                     <p className="text-lg text-[#B0B8C1]">{project.tagline}</p>
                     <div className="flex items-center gap-3 text-[#FFD700]">
                       <span className="text-2xl font-display">{project.metricLabel}</span>
@@ -244,13 +244,12 @@ const CaseStudies = () => {
                         </span>
                       ))}
                     </div>
-                    <Button
-                      variant="outline"
-                      className="group border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                    <a
+                      href="#"
+                      className="group inline-flex items-center gap-2 text-[#7209B7] transition-colors hover:underline"
                     >
-                      Read Full Story
-                      <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                    </Button>
+                      Read Full Story →
+                    </a>
                   </div>
                 </motion.article>
               ))}
@@ -274,7 +273,7 @@ const CaseStudies = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className="mb-6 break-inside-avoid overflow-hidden rounded-3xl border border-white/5 bg-[#101E33]/80 p-6 shadow-[0_18px_50px_rgba(8,12,24,0.35)] transition-all duration-300 hover:-translate-y-2 hover:border-[#7209B7]"
+                  className="mb-6 break-inside-avoid overflow-hidden rounded-3xl border border-white/5 bg-[#1B2838]/80 p-6 shadow-[0_18px_50px_rgba(8,12,24,0.35)] transition-all duration-300 hover:-translate-y-2 hover:border-[#7209B7]"
                 >
                   <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-white/5">
                     <div className="absolute inset-0 bg-gradient-to-tr from-[#7209B7]/35 via-[#06D6A0]/25 to-transparent" />

@@ -87,9 +87,8 @@ const Navigation = () => {
           <div className="hidden md:flex items-center gap-4">
             <Button
               asChild
-              variant="outline"
               size="sm"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+              className="bg-gradient-to-r from-[#F77F00] to-[#F48C06] text-white shadow-[0_0_20px_rgba(247,127,0,0.35)] transition-transform hover:scale-105"
             >
               <a href="/resume.pdf" target="_blank" rel="noreferrer">
                 Download Resume
@@ -156,9 +155,8 @@ const Navigation = () => {
                 <div className="mt-10 flex flex-col gap-4">
                   <Button
                     asChild
-                    variant="outline"
                     size="lg"
-                    className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                    className="bg-gradient-to-r from-[#F77F00] to-[#F48C06] text-white shadow-[0_0_20px_rgba(247,127,0,0.35)]"
                   >
                     <a href="/resume.pdf" target="_blank" rel="noreferrer">
                       Download Resume

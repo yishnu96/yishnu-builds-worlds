@@ -15,13 +15,13 @@ interface WritingColumnProps {
 
 const accentStyles = {
   purple: {
-    gradient: "from-[#1E2F42] via-[#0F1D2F] to-[#1B2838]",
-    glow: "shadow-[0_25px_60px_rgba(114,9,183,0.35)]",
+    gradient: "from-[#1B2838] to-[#0D1B2A]",
+    glow: "shadow-[0_10px_30px_rgba(114,9,183,0.15)]",
     accent: "text-[#7209B7]",
   },
   green: {
-    gradient: "from-[#0F2429] via-[#0D1B2A] to-[#111F2F]",
-    glow: "shadow-[0_25px_60px_rgba(6,214,160,0.3)]",
+    gradient: "from-[#1B2838] to-[#0D1B2A]",
+    glow: "shadow-[0_10px_30px_rgba(6,214,160,0.15)]",
     accent: "text-[#06D6A0]",
   },
 };
@@ -37,7 +37,7 @@ const WritingColumn = ({ emoji, title, description, href, accent, delay, latest,
       viewport={{ once: true }}
       className={`relative overflow-hidden rounded-[32px] border border-white/5 bg-gradient-to-br p-12 ${styles.gradient} ${styles.glow}`}
     >
-      <span className="text-5xl drop-shadow-[0_12px_45px_rgba(114,9,183,0.25)]">{emoji}</span>
+      <span className="text-[56px]">{emoji}</span>
       <h3 className="mt-6 font-display text-3xl text-white leading-tight">{title}</h3>
       <p className="mt-3 text-sm uppercase tracking-[0.3em] text-[#8A92A0]">{subtitle}</p>
       <p className="mt-4 text-base md:text-lg leading-[1.7] text-[#B0B8C1]">{description}</p>
@@ -58,22 +58,21 @@ const WritingColumn = ({ emoji, title, description, href, accent, delay, latest,
         ))}
       </div>
 
-      <Button
-        asChild
-        variant="outline"
-        className="mt-8 w-full border-[#7209B7] text-white hover:bg-gradient-to-r hover:from-[#7209B7] hover:to-[#06D6A0]"
+      <a
+        href={href}
+        target="_blank"
+        rel="noreferrer"
+        className="mt-8 inline-flex items-center gap-2 text-[#7209B7] transition-colors hover:underline"
       >
-        <a href={href} target="_blank" rel="noreferrer">
-          Read more
-        </a>
-      </Button>
+        Read more on Medium →
+      </a>
     </motion.article>
   );
 };
 
 const Writing = () => {
   return (
-    <section id="writing" className="relative bg-[#152235] py-20 md:py-[120px]">
+    <section id="writing" className="relative bg-[#1B2838] py-20 md:py-[120px]">
       <div className="absolute inset-0 opacity-40" style={{ backgroundImage: "radial-gradient(circle at top, rgba(114,9,183,0.22), transparent 55%)" }} />
       <div className="container relative mx-auto px-6 md:px-24 max-w-[1400px]">
         <motion.h2
@@ -81,9 +80,9 @@ const Writing = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center font-display text-4xl md:text-5xl text-white leading-tight"
+          className="text-center font-display text-[32px] md:text-[40px] text-white leading-tight"
         >
-          I Write Stuff Too <motion.span animate={{ rotate: [0, -10, 10, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>✍️</motion.span>
+          I Write Stuff Too <motion.span className="inline-block text-[72px]" animate={{ rotate: [0, -10, 10, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>✍️</motion.span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}

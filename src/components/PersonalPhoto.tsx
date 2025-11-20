@@ -21,11 +21,11 @@ const PersonalPhoto = () => {
                 background: "linear-gradient(135deg, hsl(276 89% 39%), hsl(162 85% 45%))",
               }}
             >
-              <div className="relative h-full w-full rounded-full bg-card overflow-hidden shadow-[0_0_60px_rgba(114,9,183,0.4)]">
+              <div className="relative h-full w-full rounded-full bg-card overflow-hidden shadow-[0_15px_40px_rgba(114,9,183,0.2)]">
                 {/* Placeholder for photo */}
                 <div className="absolute inset-0 flex items-center justify-center bg-muted/20 backdrop-blur-sm">
                   <div className="text-center">
-                    <div className="text-6xl mb-4">👨‍💻</div>
+                    <div className="text-[56px] mb-4">👨‍💻</div>
                     <p className="text-muted-foreground text-sm px-4">
                       Photo will be added later
                     </p>
@@ -44,7 +44,7 @@ const PersonalPhoto = () => {
             className="space-y-8 text-center lg:text-left"
           >
             <h2 className="font-display text-3xl md:text-[40px] text-foreground leading-tight">
-              Who Is This Guy Anyway? 🤔
+              Who Is This Guy Anyway? <span className="text-[40px]">🤔</span>
             </h2>
 
             <div className="space-y-6 text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0">
@@ -82,7 +82,7 @@ const PersonalPhoto = () => {
                   whileHover={{ scale: 1.1, y: -2 }}
                   className="flex items-center gap-2 text-base"
                 >
-                  <span className="text-2xl">{stat.icon}</span>
+                  <span className="text-[40px]">{stat.icon}</span>
                   <span>{stat.text}</span>
                 </motion.div>
               ))}
