@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, ArrowRight } from "lucide-react";
+import ProfilePhoto from "@/components/ProfilePhoto";
 
 const Hero = () => {
   const [showIndicator, setShowIndicator] = useState(true);
@@ -48,6 +49,11 @@ const Hero = () => {
 
       <div className="container relative z-10 mx-auto px-6 py-24">
         <div className="grid items-center gap-12 lg:grid-cols-[3fr,2fr]">
+          {/* Mobile/Tablet: Profile photo centered below */}
+          <div className="lg:hidden flex justify-center order-first">
+            <ProfilePhoto variant="hero" priority={true} />
+          </div>
+
           <div className="space-y-8">
             <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
               <p className="text-lg text-[#B0B8C1] tracking-[0.2em] uppercase">
@@ -116,7 +122,12 @@ const Hero = () => {
             </motion.p>
           </div>
 
-          <div className="relative mx-auto w-full max-w-[420px]">
+          <div className="relative mx-auto w-full max-w-[420px] lg:max-w-none">
+            {/* Desktop: Profile photo at top */}
+            <div className="hidden lg:flex justify-center mb-8">
+              <ProfilePhoto variant="hero" priority={true} />
+            </div>
+
             <motion.div
               initial={{ opacity: 0, scale: 0.9, rotate: -6 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}

@@ -9,6 +9,7 @@ import {
   Twitter,
   Code,
 } from "lucide-react";
+import ProfilePhoto from "@/components/ProfilePhoto";
 
 const quickLinks = [
   { label: "Work", id: "work" },
@@ -35,12 +36,20 @@ const Footer = () => {
     <footer className="border-t border-white/5 bg-[#0D1B2A] py-12 md:py-16">
       <div className="container mx-auto px-6">
         <div className="grid gap-10 md:grid-cols-3 md:items-center">
-          <div className="space-y-3 text-center md:text-left">
-            <p className="font-display text-xl tracking-[0.3em] text-white">YISHNU</p>
-            <p className="text-sm text-[#8A92A0]">
-              © {currentYear} Yishnu Pramanik
-              <br /> Product Manager & AI Specialist
-            </p>
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-4 text-center md:text-left">
+            {/* Profile photo */}
+            <div className="flex-shrink-0">
+              <ProfilePhoto variant="footer" />
+            </div>
+
+            {/* Text content */}
+            <div className="space-y-3">
+              <p className="font-display text-xl tracking-[0.3em] text-white">YISHNU</p>
+              <p className="text-sm text-[#8A92A0]">
+                © {currentYear} Yishnu Pramanik
+                <br /> Product Manager & AI Specialist
+              </p>
+            </div>
           </div>
 
           <div className="flex flex-wrap justify-center gap-4 text-xs uppercase tracking-[0.3em] text-[#8A92A0]">
