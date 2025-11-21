@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -20,6 +21,7 @@ interface ProjectSummary {
 
 interface FeaturedProject extends ProjectSummary {
   heroMetric: string;
+  slug: string;
 }
 
 const FILTERS: ProjectCategory[] = ["All", "0→1 Products", "AI & Automation", "B2B SaaS", "Startups"];
@@ -36,6 +38,7 @@ const FEATURED_PROJECTS: FeaturedProject[] = [
     categories: ["0→1 Products", "B2B SaaS", "Startups"],
     heroMetric: "6,000+ users onboarded",
     cover: "/placeholder.svg",
+    slug: "coredge-daas-platform",
   },
   {
     id: "vendosmart",
@@ -48,6 +51,7 @@ const FEATURED_PROJECTS: FeaturedProject[] = [
     categories: ["Startups", "B2B SaaS"],
     heroMetric: "₹12 Cr/month run-rate",
     cover: "/placeholder.svg",
+    slug: "vendosmart-scale",
   },
   {
     id: "ai-voice-agent",
@@ -60,6 +64,7 @@ const FEATURED_PROJECTS: FeaturedProject[] = [
     categories: ["AI & Automation", "Startups"],
     heroMetric: "50+ hours freed every week",
     cover: "/placeholder.svg",
+    slug: "ai-voice-agent",
   },
 ];
 
@@ -244,12 +249,12 @@ const CaseStudies = () => {
                         </span>
                       ))}
                     </div>
-                    <a
-                      href="#"
+                    <Link
+                      to={`/work/${project.slug}`}
                       className="group inline-flex items-center gap-2 text-[#7209B7] transition-colors hover:underline"
                     >
                       Read Full Story →
-                    </a>
+                    </Link>
                   </div>
                 </motion.article>
               ))}
