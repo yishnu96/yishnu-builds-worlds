@@ -1,363 +1,122 @@
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { ArrowLeft, Clock, Calendar, User, Building2, ChevronLeft, ChevronRight, Share2, ArrowDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-
-// Case study data
-const CASE_STUDIES = {
-  "coredge-daas-platform": {
-    title: "Coredge DaaS Platform",
-    tagline: "How I Built a Cloud Platform Used by 6,000 People",
-    metricValue: "6,000+",
-    metricLabel: "Active Users",
-    timeline: "Dec 2022 - May 2024",
-    duration: "18 months",
-    role: "Product Manager",
-    company: "Coredge (Adani Group)",
-    featuredImage: "/placeholder.svg",
-    techStack: ["Kubernetes", "WebRTC", "GPU Instances", "React", "Linux", "Docker"],
-    category: ["B2B SaaS", "0→1 Product", "Cloud"],
-    content: `
-## The Challenge
-
-When I joined Coredge, they had a vision: productize their entire data center offering into a self-service cloud platform. The problem? No one had defined what "Desktop-as-a-Service" actually meant for enterprise customers.
-
-**The Reality:** Enterprises were manually provisioning cloud desktops through support tickets. Average setup time? 15 minutes per desktop. This had to change.
-
-### The Problem Statement
-
-- **Manual Provisioning:** IT teams spending hours configuring individual desktops
-- **No Self-Service:** Every request required human intervention
-- **Poor UX:** Users had no visibility into their desktop status
-- **Scalability Issues:** Process couldn't scale beyond 100-200 concurrent users
-
----
-
-## My Approach
-
-### Research & Discovery
-
-I spent the first month understanding the pain points:
-
-1. Interviewed 20+ enterprise IT admins
-2. Shadowed support teams handling desktop requests
-3. Analyzed competitor offerings (AWS WorkSpaces, Azure Virtual Desktop)
-4. Mapped the entire user journey from request to usage
-
-> "We need this yesterday. Manual provisioning is killing our productivity." — IT Director, Fortune 500 Company
-
-### Prioritization Framework
-
-I used the RICE scoring model to prioritize features:
-
-- **Month 1-2:** Core MVP - Self-service provisioning, WebRTC streaming, basic monitoring
-- **Month 3-4:** Enterprise Features - SSO integration, RBAC, audit logs, usage analytics
-- **Month 5-6:** GPU Support - NVIDIA GPU instances for ML/AI workloads
-- **Month 7-12:** Scale & Polish - Multi-region, auto-scaling, advanced networking
-
----
-
-## What I Built
-
-### 1. Self-Service Provisioning
-
-Users can now spin up cloud desktops in under 3 minutes.
-
-**Before:** 15-minute manual process involving support tickets, email approvals, and manual configuration by IT staff
-
-**After:** 3-minute self-service flow with instant provisioning, automated setup, and real-time status updates
-
-### 2. WebRTC Streaming
-
-Implemented browser-based access (no downloads required) using WebRTC, TURN Servers, H.264 Encoding, and Adaptive Bitrate streaming.
-
-### 3. GPU Instances
-
-Added support for ML/AI workloads with real-time GPU utilization monitoring and training job performance analytics.
-
-### Technical Decisions
-
-**Kubernetes for Orchestration:** Chose K8s over custom scripts for scalability and reliability. This decision enabled us to scale from 10 to 6,000 concurrent users.
-
----
-
-## The Results
-
-### Key Metrics
-
-- **6,000+** Active Users
-- **3 min** Setup Time (from 15 min)
-- **99.9%** Uptime SLA
-
-### User Impact
-
-- **Deployment Time:** Reduced from 15 minutes to 3 minutes (80% improvement)
-- **User Satisfaction:** NPS score of 72 (considered excellent for B2B)
-- **Support Tickets:** Dropped 60% after self-service launch
-
-### Business Outcomes
-
-- **Revenue:** Platform contributing to company's cloud revenue targets
-- **Customer Retention:** 94% renewal rate among DaaS customers
-- **Market Position:** Featured at Vibrant Gujarat Summit and GPAI conference
-
-> "This platform is exactly what we needed. Setup that used to take our team hours now takes minutes." — CTO, Enterprise Customer (500+ seats)
-
----
-
-## Key Learnings
-
-### What Worked Well
-
-1. **Early User Involvement:** Weekly feedback sessions with beta customers shaped the product
-2. **Iterative Approach:** Shipping MVP in 90 days built momentum
-3. **Documentation:** Invested heavily in docs, reducing support load by 60%
-
-### What I'd Do Differently
-
-1. **Earlier Performance Testing:** Hit scaling issues at 4,000 users that could've been caught earlier
-2. **More Granular Analytics:** Should have instrumented user behavior from day one
-3. **Pricing Strategy:** Initial pricing was too complex; simplified it in month 6
-
-### Biggest Challenge
-
-**WebRTC at Scale:** Getting real-time video streaming to work reliably for 6,000+ concurrent users across variable network conditions was brutally hard. Required 3 months of optimization.
-
-### What I'm Proud Of
-
-This wasn't just a product launch—it was a complete paradigm shift in how enterprises provision cloud infrastructure. We turned a 15-minute manual process into a 3-minute self-service flow that delights users.
-    `,
-  },
-  "vendosmart-scale": {
-    title: "VendoSmart Growth",
-    tagline: "Scaling a B2B Vendor Management Platform from 50 to 500+ Users",
-    metricValue: "10x",
-    metricLabel: "User Growth",
-    timeline: "Jun 2024 - Present",
-    duration: "6 months",
-    role: "Product Manager",
-    company: "VendoSmart",
-    featuredImage: "/placeholder.svg",
-    techStack: ["React", "Node.js", "PostgreSQL", "AWS", "Stripe", "SendGrid"],
-    category: ["B2B SaaS", "Growth", "Scale"],
-    content: `
-## The Challenge
-
-VendoSmart had product-market fit but was hitting growth walls. The platform was designed for early adopters, not enterprise scale.
-
-**The Reality:** Customer onboarding took 2 weeks. Support tickets were growing 40% month-over-month. Churn was creeping up.
-
-### The Problem Statement
-
-- **Onboarding Friction:** New customers took 14+ days to see value
-- **Manual Processes:** Account setup required extensive support involvement
-- **Feature Gaps:** Enterprise customers needed SSO, audit logs, and advanced permissions
-- **Performance Issues:** Platform slowed significantly above 100 concurrent users
-
----
-
-## My Approach
-
-### Research & Discovery
-
-I conducted a comprehensive analysis:
-
-1. Analyzed churned customer exit interviews
-2. Mapped the entire onboarding journey with heatmaps and session recordings
-3. Benchmarked against competitors (Coupa, SAP Ariba)
-4. Interviewed 15 power users to understand their workflows
-
-> "I love the product, but getting my team onboarded was painful. We almost gave up in week one." — Head of Procurement, Mid-Market Customer
-
-### The ICE Framework
-
-Used the ICE framework to prioritize initiatives:
-
-- **Month 1:** Quick Wins - Self-service onboarding wizard, in-app tooltips, automated welcome sequence
-- **Month 2:** Enterprise Features - SSO integration (Okta, Azure AD), role-based access control, audit logs
-- **Month 3-4:** Performance & Scale - Database optimization, caching layer, CDN implementation
-- **Month 5-6:** Growth Loops - Referral program, team collaboration features, integrations marketplace
-
----
-
-## What I Built
-
-### 1. Self-Service Onboarding
-
-Completely redesigned the first-time user experience.
-
-**Before:** 14-day onboarding with 5+ support calls, manual data import, and custom training sessions
-
-**After:** 3-day self-service onboarding with interactive tutorials, automated data import, and contextual help
-
-### 2. Enterprise Security Suite
-
-Built enterprise-grade security features including Okta SSO, Azure AD, RBAC, Audit Logs, IP Allowlisting, and 2FA.
-
-### 3. Performance Optimization
-
-Achieved 3x performance improvement through:
-
-- **Database:** Query optimization and connection pooling
-- **Caching:** Redis layer for frequently accessed data
-- **CDN:** CloudFront for static assets and API responses
-- **Frontend:** Code splitting and lazy loading
-
----
-
-## The Results
-
-### Key Metrics
-
-- **10x** User Growth
-- **3 days** Time to Value (from 14)
-- **78%** Onboarding Completion
-
-### Business Impact
-
-- **Onboarding Time:** Reduced from 14 days to 3 days (79% improvement)
-- **Support Tickets:** Dropped 45% after self-service launch
-- **Net Revenue Retention:** Improved from 95% to 112%
-
-> "The new onboarding is incredible. Our team was productive within a week instead of a month." — VP of Operations, Enterprise Customer (200+ seats)
-
----
-
-## Key Learnings
-
-### What Worked Well
-
-1. **Data-Driven Prioritization:** Session recordings revealed friction points we never anticipated
-2. **Incremental Delivery:** Shipping every 2 weeks maintained momentum and allowed course correction
-3. **Customer Co-Development:** Beta customers helped shape enterprise features
-
-### What I'd Do Differently
-
-1. **Earlier Performance Testing:** Should have load tested from day one
-2. **More A/B Testing:** Relied too heavily on qualitative feedback
-3. **Documentation:** Should have invested in docs earlier
-    `,
-  },
-  "ai-voice-agent": {
-    title: "AI Voice Agent",
-    tagline: "Building an AI-Powered Voice Assistant for Customer Support",
-    metricValue: "40%",
-    metricLabel: "Cost Reduction",
-    timeline: "Jan 2024 - Apr 2024",
-    duration: "4 months",
-    role: "Product Manager",
-    company: "Stealth Startup",
-    featuredImage: "/placeholder.svg",
-    techStack: ["OpenAI", "Twilio", "Python", "FastAPI", "Redis", "AWS Lambda"],
-    category: ["AI/ML", "0→1 Product", "Voice"],
-    content: `
-## The Challenge
-
-A fast-growing e-commerce company was drowning in support calls. Their 50-person support team couldn't keep up with 10,000+ daily calls, leading to 15-minute average wait times.
-
-**The Reality:** Customer satisfaction scores were plummeting. 30% of callers hung up before reaching an agent. The company was losing $2M annually in potential revenue from abandoned calls.
-
-### The Problem Statement
-
-- **Volume Overload:** 10,000+ daily calls with only 50 agents
-- **Long Wait Times:** Average 15-minute hold time
-- **High Abandonment:** 30% of callers hanging up
-- **Repetitive Queries:** 60% of calls were for order status, returns, and FAQs
-
----
-
-## My Approach
-
-### Research & Discovery
-
-Deep dive into the support operation:
-
-1. Analyzed 1,000+ call recordings to categorize query types
-2. Shadowed support agents for a week
-3. Mapped the decision tree for common queries
-4. Evaluated AI voice platforms (Twilio, Amazon Connect, Google CCAI)
-
-> "Most of my calls are just people asking where their order is. I could handle 10x more complex issues if someone else handled the basics." — Senior Support Agent
-
-### The AI Strategy
-
-Rather than replacing agents, we augmented them:
-
-- **Week 1-2:** Discovery & Design - Query analysis, conversation flows, success criteria definition
-- **Week 3-6:** MVP Development - Order status bot, basic NLU, Twilio integration, escalation flows
-- **Week 7-10:** Iteration - Return processing, FAQ handling, sentiment detection, human handoff
-- **Week 11-16:** Scale & Optimize - Multi-language support, A/B testing, continuous learning pipeline
-
----
-
-## What I Built
-
-### 1. Intelligent Call Routing
-
-AI determines intent within 10 seconds and routes appropriately.
-
-**Before:** All calls go to general queue, 15-minute wait, agent manually determines intent
-
-**After:** AI identifies intent in 10 seconds, handles 60% automatically, routes complex issues to specialists
-
-### 2. Conversational Order Status
-
-Natural language order tracking with OpenAI GPT-4, Twilio Voice, Speech-to-Text, and real-time processing.
-
-### 3. Smart Escalation
-
-AI knows when to hand off to humans. The system monitors caller frustration in real-time. If sentiment drops below threshold, it immediately offers human escalation—no dead ends.
-
----
-
-## The Results
-
-### Key Metrics
-
-- **40%** Cost Reduction
-- **< 1 min** Avg Wait Time (from 15 min)
-- **60%** Auto-Resolution Rate
-
-### Impact Summary
-
-- **Wait Time:** Reduced from 15 minutes to under 1 minute
-- **Call Abandonment:** Dropped from 30% to 8%
-- **Agent Productivity:** Increased by 3x (handling complex issues only)
-- **Customer Satisfaction:** NPS improved from 32 to 58
-
-### Business Outcomes
-
-- **Annual Savings:** $800K in support costs
-- **Revenue Recovery:** $1.2M from reduced cart abandonment
-- **Agent Retention:** Support team turnover dropped 40%
-
-> "I actually enjoy my job now. I get to solve real problems instead of reading order numbers all day." — Support Agent
-
----
-
-## Key Learnings
-
-### What Worked Well
-
-1. **Human-in-the-Loop:** AI augments, not replaces—agents are happier, customers better served
-2. **Graceful Degradation:** When AI fails, seamless handoff to humans
-3. **Continuous Learning:** Feedback loop improves accuracy weekly
-
-### What I'd Do Differently
-
-1. **Start Simpler:** Initial NLU was over-engineered; simpler rules worked better initially
-2. **More Edge Case Testing:** Accents and background noise caused early issues
-3. **Earlier Agent Buy-In:** Should have involved support team from day one
-
-### Biggest Challenge
-
-**Latency:** Getting response time under 2 seconds was critical for natural conversation. Required extensive optimization—caching common responses, streaming audio, and edge deployment.
-    `,
-  },
+import { marked } from "marked";
+
+// Direct imports of markdown files
+import coredgeRaw from '../../content/case-studies/coredge-daas-platform.md?raw';
+import vendosmartRaw from '../../content/case-studies/vendosmart-scale.md?raw';
+import aiVoiceRaw from '../../content/case-studies/ai-voice-agent.md?raw';
+
+interface CaseStudyData {
+  title: string;
+  tagline: string;
+  slug: string;
+  metricValue: string;
+  metricLabel: string;
+  timeline: string;
+  duration: string;
+  role: string;
+  company: string;
+  featuredImage: string;
+  techStack: string[];
+  category: string[];
+  order: number;
+  content: string;
+}
+
+// Simple browser-compatible frontmatter parser
+function parseFrontmatter(rawContent: string): { data: Record<string, any>; content: string } {
+  const frontmatterRegex = /^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/;
+  const match = rawContent.match(frontmatterRegex);
+
+  if (!match) {
+    return { data: {}, content: rawContent };
+  }
+
+  const [, frontmatterStr, content] = match;
+  const data: Record<string, any> = {};
+
+  // Parse YAML-like frontmatter
+  let currentKey = '';
+  let inArray = false;
+  let arrayValues: string[] = [];
+
+  frontmatterStr.split('\n').forEach(line => {
+    const trimmedLine = line.trim();
+
+    // Array item
+    if (trimmedLine.startsWith('- ') && inArray) {
+      arrayValues.push(trimmedLine.slice(2).trim());
+      return;
+    }
+
+    // End previous array if we hit a new key
+    if (inArray && !trimmedLine.startsWith('- ') && trimmedLine.includes(':')) {
+      data[currentKey] = arrayValues;
+      inArray = false;
+      arrayValues = [];
+    }
+
+    // Key-value pair
+    const colonIndex = trimmedLine.indexOf(':');
+    if (colonIndex > 0) {
+      const key = trimmedLine.slice(0, colonIndex).trim();
+      const value = trimmedLine.slice(colonIndex + 1).trim();
+
+      if (value === '') {
+        // Start of array
+        currentKey = key;
+        inArray = true;
+        arrayValues = [];
+      } else {
+        // Simple value - remove quotes if present
+        data[key] = value.replace(/^["']|["']$/g, '');
+      }
+    }
+  });
+
+  // Handle last array
+  if (inArray) {
+    data[currentKey] = arrayValues;
+  }
+
+  return { data, content };
+}
+
+// Parse a single case study
+function parseCaseStudy(rawContent: string): CaseStudyData {
+  const { data, content } = parseFrontmatter(rawContent);
+  return {
+    title: data.title || '',
+    tagline: data.tagline || '',
+    slug: data.slug || '',
+    metricValue: data.metricValue || '',
+    metricLabel: data.metricLabel || '',
+    timeline: data.timeline || '',
+    duration: data.duration || '',
+    role: data.role || '',
+    company: data.company || '',
+    featuredImage: data.featuredImage || '/placeholder.svg',
+    techStack: data.techStack || [],
+    category: data.category || [],
+    order: parseInt(data.order) || 999,
+    content,
+  };
+}
+
+// Parse all case studies
+const CASE_STUDIES: Record<string, CaseStudyData> = {
+  'coredge-daas-platform': parseCaseStudy(coredgeRaw),
+  'vendosmart-scale': parseCaseStudy(vendosmartRaw),
+  'ai-voice-agent': parseCaseStudy(aiVoiceRaw),
 };
 
-const CASE_STUDY_ORDER = ["coredge-daas-platform", "vendosmart-scale", "ai-voice-agent"];
+const CASE_STUDY_ORDER = Object.values(CASE_STUDIES)
+  .sort((a, b) => a.order - b.order)
+  .map(s => s.slug);
 
 // Progress Bar Component
 const ProgressBar = () => {
@@ -377,47 +136,55 @@ const ProgressBar = () => {
 };
 
 // Sidebar Navigation
-const CaseStudySidebar = () => {
+const CaseStudySidebar = ({ htmlContent }: { htmlContent: string }) => {
   const [headings, setHeadings] = useState<{ id: string; text: string; level: number }[]>([]);
   const [activeId, setActiveId] = useState("");
 
   useEffect(() => {
-    const contentElement = document.getElementById("case-study-content");
-    if (!contentElement) return;
+    let observer: IntersectionObserver | null = null;
 
-    const headingElements = contentElement.querySelectorAll("h2, h3");
-    const headingsData: { id: string; text: string; level: number }[] = [];
+    // Wait for content to be rendered
+    const timer = setTimeout(() => {
+      const contentElement = document.getElementById("case-study-content");
+      if (!contentElement) return;
 
-    headingElements.forEach((heading) => {
-      const id = heading.id || heading.textContent?.toLowerCase().replace(/\s+/g, "-") || "";
-      if (!heading.id) {
-        heading.id = id;
-      }
+      const headingElements = contentElement.querySelectorAll("h2, h3");
+      const headingsData: { id: string; text: string; level: number }[] = [];
 
-      headingsData.push({
-        id,
-        text: heading.textContent || "",
-        level: parseInt(heading.tagName[1]),
-      });
-    });
+      headingElements.forEach((heading) => {
+        const id = heading.id || heading.textContent?.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, '') || "";
+        if (!heading.id) {
+          heading.id = id;
+        }
 
-    setHeadings(headingsData);
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-          }
+        headingsData.push({
+          id,
+          text: heading.textContent || "",
+          level: parseInt(heading.tagName[1]),
         });
-      },
-      { rootMargin: "-20% 0% -35% 0%" }
-    );
+      });
 
-    headingElements.forEach((heading) => observer.observe(heading));
+      setHeadings(headingsData);
 
-    return () => observer.disconnect();
-  }, []);
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveId(entry.target.id);
+            }
+          });
+        },
+        { rootMargin: "-20% 0% -35% 0%" }
+      );
+
+      headingElements.forEach((heading) => observer?.observe(heading));
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      observer?.disconnect();
+    };
+  }, [htmlContent]);
 
   const scrollToHeading = (id: string) => {
     const element = document.getElementById(id);
@@ -461,19 +228,37 @@ const CaseStudySidebar = () => {
 
 const CaseStudyPage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const navigate = useNavigate();
-  const caseStudy = slug ? CASE_STUDIES[slug as keyof typeof CASE_STUDIES] : null;
+  const [htmlContent, setHtmlContent] = useState("");
+  const caseStudy = slug ? CASE_STUDIES[slug] : null;
 
   // Get adjacent case studies
   const currentIndex = slug ? CASE_STUDY_ORDER.indexOf(slug) : -1;
   const previousSlug = currentIndex > 0 ? CASE_STUDY_ORDER[currentIndex - 1] : null;
   const nextSlug = currentIndex < CASE_STUDY_ORDER.length - 1 ? CASE_STUDY_ORDER[currentIndex + 1] : null;
-  const previousProject = previousSlug ? CASE_STUDIES[previousSlug as keyof typeof CASE_STUDIES] : null;
-  const nextProject = nextSlug ? CASE_STUDIES[nextSlug as keyof typeof CASE_STUDIES] : null;
+  const previousProject = previousSlug ? CASE_STUDIES[previousSlug] : null;
+  const nextProject = nextSlug ? CASE_STUDIES[nextSlug] : null;
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [slug]);
+    if (caseStudy?.content) {
+      // Configure marked to add IDs to headings
+      const renderer = new marked.Renderer();
+      const originalHeading = renderer.heading.bind(renderer);
+
+      renderer.heading = ({ text, depth }: { text: string; depth: number }) => {
+        const escapedText = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        return `<h${depth} id="${escapedText}">${text}</h${depth}>`;
+      };
+
+      marked.setOptions({
+        gfm: true,
+        breaks: true,
+        renderer,
+      });
+
+      setHtmlContent(marked.parse(caseStudy.content) as string);
+    }
+  }, [slug, caseStudy]);
 
   if (!caseStudy) {
     return (
@@ -647,13 +432,13 @@ const CaseStudyPage = () => {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-[240px,1fr] gap-12 max-w-[1400px] mx-auto">
             <aside>
-              <CaseStudySidebar />
+              <CaseStudySidebar htmlContent={htmlContent} />
             </aside>
 
             <article
               id="case-study-content"
               className="prose prose-invert prose-lg max-w-[800px] prose-headings:font-display prose-headings:text-white prose-p:text-[#B0B8C1] prose-p:leading-relaxed prose-a:text-[#7209B7] prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-code:text-[#06D6A0] prose-code:bg-white/5 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-pre:bg-[#1B2838] prose-pre:border prose-pre:border-white/10 prose-blockquote:border-l-[#7209B7] prose-blockquote:bg-[#1B2838]/50 prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:rounded-r-xl prose-blockquote:not-italic prose-li:text-[#B0B8C1] prose-hr:border-white/10"
-              dangerouslySetInnerHTML={{ __html: formatContent(caseStudy.content) }}
+              dangerouslySetInnerHTML={{ __html: htmlContent }}
             />
           </div>
         </div>
@@ -732,35 +517,5 @@ const CaseStudyPage = () => {
     </div>
   );
 };
-
-// Simple markdown to HTML converter
-function formatContent(content: string): string {
-  return content
-    // Headers
-    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
-    // Bold
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    // Italic
-    .replace(/\*(.+?)\*/g, '<em>$1</em>')
-    // Blockquotes
-    .replace(/^> (.+)$/gm, '<blockquote><p>$1</p></blockquote>')
-    // Horizontal rules
-    .replace(/^---$/gm, '<hr />')
-    // Unordered lists
-    .replace(/^- (.+)$/gm, '<li>$1</li>')
-    // Wrap consecutive li elements in ul
-    .replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>')
-    // Ordered lists (numbered)
-    .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
-    // Paragraphs (lines that aren't already wrapped)
-    .split('\n\n')
-    .map(block => {
-      if (block.startsWith('<') || block.trim() === '') return block;
-      return `<p>${block}</p>`;
-    })
-    .join('\n');
-}
 
 export default CaseStudyPage;
