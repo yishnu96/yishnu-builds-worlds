@@ -36,37 +36,37 @@ const Hero = () => {
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "linear-gradient(rgba(114,9,183,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(114,9,183,0.05) 1px, transparent 1px)", backgroundSize: "80px 80px" }} />
         <motion.div
-          className="absolute -top-16 -right-24 h-96 w-96 rounded-full bg-[#7209B7]/25 blur-[140px]"
+          className="absolute -top-16 -right-12 md:-right-24 h-48 w-48 md:h-96 md:w-96 rounded-full bg-[#7209B7]/25 blur-[140px]"
           animate={{ opacity: [0.6, 0.9, 0.6], scale: [1, 1.1, 1] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute bottom-[-120px] left-[-60px] h-[420px] w-[420px] rounded-full bg-[#06D6A0]/20 blur-[150px]"
+          className="absolute bottom-[-60px] left-[-30px] md:bottom-[-120px] md:left-[-60px] h-[240px] w-[240px] md:h-[420px] md:w-[420px] rounded-full bg-[#06D6A0]/20 blur-[150px]"
           animate={{ opacity: [0.5, 0.8, 0.5], scale: [1, 1.05, 1] }}
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
 
-      <div className="container relative z-10 mx-auto px-6 py-24">
-        <div className="grid items-center gap-12 lg:grid-cols-[3fr,2fr]">
+      <div className="container relative z-10 mx-auto px-6 py-12 md:py-20 lg:py-24">
+        <div className="grid items-center gap-8 md:gap-12 md:grid-cols-2 lg:grid-cols-[3fr,2fr]">
           {/* Mobile/Tablet: Profile photo centered below */}
-          <div className="lg:hidden flex justify-center order-first">
+          <div className="md:hidden flex justify-center order-first">
             <ProfilePhoto variant="hero" priority={true} />
           </div>
 
           <div className="space-y-8">
             <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-              <p className="text-lg text-[#B0B8C1] tracking-[0.2em] uppercase">
+              <p className="text-base md:text-lg text-[#B0B8C1] tracking-[0.2em] uppercase text-center md:text-left">
                 Hey, I'm Yishnu
                 <motion.span
-                  className="ml-3 inline-block text-[40px]"
+                  className="ml-3 inline-block text-[32px] md:text-[40px]"
                   animate={{ rotate: [0, 12, -6, 0] }}
                   transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                 >
                   👋
                 </motion.span>
               </p>
-              <h1 className="font-display text-5xl leading-tight text-white md:text-5xl">
+              <h1 className="font-display text-[32px] leading-tight text-white md:text-[48px] lg:text-5xl text-center md:text-left mt-4">
                 I build products that go from
                 <br />
                 <span className="text-white/80">"just an idea"</span> to
@@ -75,21 +75,21 @@ const Hero = () => {
                   ₹12 Cr/month
                 </span>
               </h1>
-              <p className="text-xl italic text-[#B0B8C1]">(And yes, I can code them too)</p>
+              <p className="text-base md:text-xl italic text-[#B0B8C1] text-center md:text-left">(And yes, I can code them too)</p>
             </motion.div>
 
             <motion.p
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="max-w-xl text-base leading-8 text-[#8A92A0] md:text-lg"
+              className="max-w-xl text-sm leading-7 text-[#8A92A0] md:text-base lg:text-lg text-center md:text-left px-4 md:px-0"
             >
               From scrappy napkin sketches to boardroom-ready launches, I obsess over every step—customer research, UX flows, GTM, and the
               technical architecture that keeps engineers smiling.
             </motion.p>
 
             <motion.div
-              className="flex flex-col gap-4 sm:flex-row"
+              className="flex flex-col gap-4 md:flex-row px-5 md:px-0"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
@@ -97,14 +97,14 @@ const Hero = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="w-full sm:w-auto border-[#7209B7] text-[#7209B7] transition-transform hover:-translate-y-1 hover:bg-[#7209B7] hover:text-white"
+                className="w-full md:w-auto border-[#7209B7] text-[#7209B7] transition-transform hover:-translate-y-1 hover:bg-[#7209B7] hover:text-white min-h-[44px]"
                 onClick={scrollToNext}
               >
                 View My Work <ArrowDown className="ml-2 h-4 w-4" />
               </Button>
               <Button
                 size="lg"
-                className="w-full sm:w-auto bg-gradient-to-r from-[#F77F00] via-[#F77F00] to-[#FF9F1C] text-white shadow-[0_8px_35px_rgba(247,127,0,0.35)] transition-transform hover:scale-[1.05]"
+                className="w-full md:w-auto bg-gradient-to-r from-[#F77F00] via-[#F77F00] to-[#FF9F1C] text-white shadow-[0_8px_35px_rgba(247,127,0,0.35)] transition-transform hover:scale-[1.05] min-h-[44px]"
                 onClick={scrollToConnect}
               >
                 Let's Talk <ArrowRight className="ml-2 h-4 w-4" />
@@ -115,16 +115,16 @@ const Hero = () => {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.6 }}
-              className="max-w-lg text-sm text-[#8A92A0]"
+              className="max-w-lg text-sm text-[#8A92A0] text-center md:text-left px-4 md:px-0"
             >
               Currently helping founders automate stuff with AI. Previously built a cloud platform used by 6,000+ people. Sometimes I write
               random thoughts about Bollywood on Medium 🎬
             </motion.p>
           </div>
 
-          <div className="relative mx-auto w-full max-w-[420px] lg:max-w-none">
-            {/* Desktop: Profile photo at top */}
-            <div className="hidden lg:flex justify-center mb-8">
+          <div className="relative mx-auto w-full max-w-[420px] md:max-w-none">
+            {/* Tablet/Desktop: Profile photo at top */}
+            <div className="hidden md:flex justify-center mb-8">
               <ProfilePhoto variant="hero" priority={true} />
             </div>
 

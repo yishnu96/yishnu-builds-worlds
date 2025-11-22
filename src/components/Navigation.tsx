@@ -54,10 +54,10 @@ const Navigation = () => {
             : "bg-transparent",
         )}
       >
-        <div className="container mx-auto h-20 flex items-center justify-between px-6">
+        <div className="container mx-auto h-20 md:h-20 lg:h-20 flex items-center justify-between px-6">
           <button
             onClick={() => scrollToSection("hero")}
-            className="text-2xl font-display font-bold tracking-[0.2em] text-foreground transition-transform hover:scale-105"
+            className="text-xl md:text-2xl font-display font-bold tracking-[0.2em] text-foreground transition-transform hover:scale-105"
           >
             YISHNU
           </button>
@@ -68,7 +68,7 @@ const Navigation = () => {
                 key={link.target}
                 onClick={() => scrollToSection(link.target)}
                 className={cn(
-                  "relative text-sm uppercase tracking-[0.2em] text-muted-foreground transition-colors",
+                  "relative text-sm uppercase tracking-[0.2em] text-muted-foreground transition-colors py-3 px-2",
                   activeSection === link.target && "text-foreground",
                 )}
               >
@@ -88,7 +88,7 @@ const Navigation = () => {
             <Button
               asChild
               size="sm"
-              className="bg-gradient-to-r from-[#F77F00] to-[#F48C06] text-white shadow-[0_0_20px_rgba(247,127,0,0.35)] transition-transform hover:scale-105"
+              className="bg-gradient-to-r from-[#F77F00] to-[#F48C06] text-white shadow-[0_0_20px_rgba(247,127,0,0.35)] transition-transform hover:scale-105 min-h-[44px]"
             >
               <a href="/resume.pdf" target="_blank" rel="noreferrer">
                 Download Resume
@@ -96,7 +96,7 @@ const Navigation = () => {
             </Button>
             <Button
               size="sm"
-              className="bg-gradient-to-r from-[#F77F00] to-[#F48C06] text-white shadow-[0_0_25px_rgba(247,127,0,0.45)] transition-transform hover:scale-105"
+              className="bg-gradient-to-r from-[#F77F00] to-[#F48C06] text-white shadow-[0_0_25px_rgba(247,127,0,0.45)] transition-transform hover:scale-105 min-h-[44px]"
               onClick={() => scrollToSection("connect")}
             >
               Let's Talk
@@ -104,11 +104,11 @@ const Navigation = () => {
           </div>
 
           <button
-            className="lg:hidden p-2 rounded-full border border-border bg-background/60 backdrop-blur-xl"
+            className="lg:hidden p-3 rounded-full border border-border bg-background/60 backdrop-blur-xl min-w-[44px] min-h-[44px] flex items-center justify-center"
             onClick={() => setIsMenuOpen(true)}
             aria-label="Open navigation menu"
           >
-            <Menu className="h-5 w-5" />
+            <Menu className="h-6 w-6 text-[#7209B7]" />
           </button>
         </div>
       </motion.nav>
@@ -120,56 +120,56 @@ const Navigation = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-40 bg-[#0D1B2A]/95 backdrop-blur-3xl"
+            onClick={() => setIsMenuOpen(false)}
           >
             <motion.div
-              initial={{ y: -20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -20, opacity: 0 }}
-              transition={{ type: "spring", stiffness: 120, damping: 20 }}
-              className="absolute top-6 right-6 flex flex-col gap-10"
+              initial={{ x: 300, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: 300, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 120, damping: 20, duration: 0.3 }}
+              className="absolute inset-0 flex flex-col items-center justify-center px-8"
+              onClick={(e) => e.stopPropagation()}
             >
               <button
-                className="self-end rounded-full border border-border bg-background/80 p-2"
+                className="absolute top-6 right-6 rounded-full border border-border bg-background/80 p-3 min-w-[44px] min-h-[44px] flex items-center justify-center"
                 onClick={() => setIsMenuOpen(false)}
                 aria-label="Close navigation menu"
               >
-                <X className="h-5 w-5" />
+                <X className="h-6 w-6" />
               </button>
 
-              <div className="px-8">
-                <nav className="flex flex-col gap-6 text-right">
-                  {NAV_LINKS.map((link, idx) => (
-                    <motion.button
-                      key={link.target}
-                      onClick={() => scrollToSection(link.target)}
-                      className="text-2xl font-display text-foreground"
-                      initial={{ opacity: 0, x: 30 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.1 * idx }}
-                    >
-                      {link.label}
-                    </motion.button>
-                  ))}
-                </nav>
+              <nav className="flex flex-col gap-2 text-center mb-8">
+                {NAV_LINKS.map((link, idx) => (
+                  <motion.button
+                    key={link.target}
+                    onClick={() => scrollToSection(link.target)}
+                    className="text-2xl font-display text-foreground min-h-[60px] px-8 flex items-center justify-center hover:text-[#7209B7] transition-colors"
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 * idx }}
+                  >
+                    {link.label}
+                  </motion.button>
+                ))}
+              </nav>
 
-                <div className="mt-10 flex flex-col gap-4">
-                  <Button
-                    asChild
-                    size="lg"
-                    className="bg-gradient-to-r from-[#F77F00] to-[#F48C06] text-white shadow-[0_0_20px_rgba(247,127,0,0.35)]"
-                  >
-                    <a href="/resume.pdf" target="_blank" rel="noreferrer">
-                      Download Resume
-                    </a>
-                  </Button>
-                  <Button
-                    size="lg"
-                    className="bg-gradient-to-r from-[#F77F00] to-[#F48C06] text-white shadow-[0_0_25px_rgba(247,127,0,0.45)]"
-                    onClick={() => scrollToSection("connect")}
-                  >
-                    Let's Talk
-                  </Button>
-                </div>
+              <div className="w-full max-w-xs border-t border-white/10 pt-8 flex flex-col gap-4">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-gradient-to-r from-[#F77F00] to-[#F48C06] text-white shadow-[0_0_20px_rgba(247,127,0,0.35)] min-h-[44px] w-full"
+                >
+                  <a href="/resume.pdf" target="_blank" rel="noreferrer">
+                    Download Resume
+                  </a>
+                </Button>
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-[#F77F00] to-[#F48C06] text-white shadow-[0_0_25px_rgba(247,127,0,0.45)] min-h-[44px] w-full"
+                  onClick={() => scrollToSection("connect")}
+                >
+                  Let's Talk
+                </Button>
               </div>
             </motion.div>
           </motion.div>

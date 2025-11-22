@@ -34,19 +34,19 @@ const SuperpowerCard = ({ emoji, title, description, tagline, accent, delay }: S
       transition={{ duration: 0.6, delay }}
       viewport={{ once: true }}
       whileHover={{ y: -8, scale: 1.05 }}
-      className={`relative overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-br p-10 backdrop-blur-lg transition-all duration-300 ${bg} ${glow}`}
+      className={`relative overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-br p-6 md:p-8 lg:p-10 backdrop-blur-lg transition-all duration-300 ${bg} ${glow}`}
     >
       <motion.span
-        className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-[56px]"
+        className="mb-6 inline-flex h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 items-center justify-center rounded-2xl bg-white/10 text-[40px] md:text-[48px] lg:text-[56px]"
         animate={{ scale: [1, 1.08, 1], rotate: [0, 4, -4, 0] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
       >
         {emoji}
       </motion.span>
 
-      <h3 className="font-display text-2xl text-white leading-tight">{title}</h3>
-      <p className="mt-4 text-base md:text-lg leading-[1.7] text-[#B0B8C1]">{description}</p>
-      <p className="mt-6 text-sm italic text-[#8A92A0] leading-[1.7]">{tagline}</p>
+      <h3 className="font-display text-lg md:text-xl lg:text-2xl text-white leading-tight text-center md:text-left">{title}</h3>
+      <p className="mt-4 text-sm md:text-base lg:text-lg leading-[1.7] text-[#B0B8C1] text-center md:text-left">{description}</p>
+      <p className="mt-6 text-sm italic text-[#8A92A0] leading-[1.7] text-center md:text-left">{tagline}</p>
     </motion.div>
   );
 };
@@ -61,12 +61,12 @@ const Superpowers = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mx-auto mb-20 max-w-3xl text-center font-display text-[32px] md:text-[40px] text-white leading-tight"
+          className="mx-auto mb-12 md:mb-16 lg:mb-20 max-w-3xl text-center font-display text-[28px] md:text-[32px] lg:text-[40px] text-white leading-tight"
         >
           My Superpowers (No Cape Required)
         </motion.h2>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-6 md:gap-8 md:grid-cols-3">
           <SuperpowerCard
             emoji="🧠"
             title="Analytical Thinking & Problem Solving"

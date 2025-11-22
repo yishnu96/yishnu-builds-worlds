@@ -48,7 +48,7 @@ const MetricItem = ({ from, to, prefix = "", suffix = "", label, delay }: Metric
       className="group flex flex-col items-center gap-3 text-center"
     >
       <motion.div
-        className="text-4xl font-display font-bold text-[#FFD700] md:text-5xl"
+        className="text-3xl font-display font-bold text-[#FFD700] md:text-4xl lg:text-5xl"
         whileHover={{ scale: 1.08 }}
         transition={{ type: "spring", stiffness: 220, damping: 18 }}
       >
@@ -77,13 +77,22 @@ const MetricsBar = () => {
       className="relative bg-[#1B2838] py-20 md:py-[120px] text-white"
     >
       <div className="container mx-auto px-6">
-        <div className="grid gap-10 text-center md:grid-cols-2 md:gap-12 lg:grid-cols-4">
+        <div className="flex flex-col gap-6 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-4 lg:gap-12">
           {metrics.map((metric, index) => (
             <div
               key={metric.label}
-              className="relative flex flex-col items-center"
+              className="relative flex flex-col items-center py-6 md:py-0"
             >
               <MetricItem {...metric} />
+              {/* Horizontal divider for mobile (below each item except last) */}
+              {index < metrics.length - 1 && (
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 border-b border-white/10 md:hidden" />
+              )}
+              {/* Vertical divider for tablet - between items in same row */}
+              {index < metrics.length - 1 && index !== 1 && (
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden h-20 border-r border-white/10 md:block lg:hidden" />
+              )}
+              {/* Vertical divider for desktop - between all items */}
               {index < metrics.length - 1 && (
                 <div className="absolute right-[-24px] top-1/2 hidden h-20 -translate-y-1/2 border-r border-white/10 lg:block" />
               )}
@@ -96,7 +105,7 @@ const MetricsBar = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.6 }}
           viewport={{ once: true }}
-          className="mt-12 text-center text-lg italic text-[#8A92A0]"
+          className="mt-12 text-center text-base md:text-lg italic text-[#8A92A0]"
         >
           "Yeah, I move fast. Comes with the founder territory."
         </motion.p>
