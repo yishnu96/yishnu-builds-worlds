@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import yishnuImg from "@/assets/yishnu.png";
 
 const PersonalPhoto = () => {
   return (
@@ -22,15 +23,11 @@ const PersonalPhoto = () => {
               }}
             >
               <div className="relative h-full w-full rounded-full bg-card overflow-hidden shadow-[0_15px_40px_rgba(114,9,183,0.2)]">
-                {/* Placeholder for photo */}
-                <div className="absolute inset-0 flex items-center justify-center bg-muted/20 backdrop-blur-sm">
-                  <div className="text-center">
-                    <div className="text-[56px] mb-4">👨‍💻</div>
-                    <p className="text-muted-foreground text-sm px-4">
-                      Photo will be added later
-                    </p>
-                  </div>
-                </div>
+                <img
+                  src={yishnuImg}
+                  alt="Yishnu Pramanik"
+                  className="w-full h-full object-cover rounded-full"
+                />
               </div>
             </motion.div>
           </motion.div>
@@ -49,13 +46,13 @@ const PersonalPhoto = () => {
 
             <div className="space-y-6 text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0">
               <p>
-                Started as a software engineer who couldn't stop asking "why are we building this?" 
-                That curiosity led me to product management, where I get to build things AND ask 
+                Started as a software engineer who couldn't stop asking "why are we building this?"
+                That curiosity led me to product management, where I get to build things AND ask
                 annoying questions.
               </p>
               <p>
-                When I'm not shipping products, I'm probably writing hot takes about Bollywood on 
-                Medium, helping founders automate their chaos, or trying to convince ChatGPT that 
+                When I'm not shipping products, I'm probably writing hot takes about Bollywood on
+                Medium, helping founders automate their chaos, or trying to convince ChatGPT that
                 I'm actually funny.
               </p>
               <p>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import yishnuImg from "@/assets/yishnu.png";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import ProfilePhoto from "@/components/ProfilePhoto";
@@ -51,7 +52,7 @@ const Hero = () => {
         <div className="grid items-center gap-8 md:gap-12 md:grid-cols-2 lg:grid-cols-[3fr,2fr]">
           {/* Mobile/Tablet: Profile photo centered below */}
           <div className="md:hidden flex justify-center order-first">
-            <ProfilePhoto variant="hero" priority={true} />
+            <img src={yishnuImg} alt="Yishnu" className="rounded-full w-[200px] h-[200px] md:w-[280px] md:h-[280px] object-cover border-4 border-white/10 shadow-2xl" />
           </div>
 
           <div className="space-y-8">
@@ -125,7 +126,7 @@ const Hero = () => {
           <div className="relative mx-auto w-full max-w-[420px] md:max-w-none">
             {/* Tablet/Desktop: Profile photo at top */}
             <div className="hidden md:flex justify-center mb-8">
-              <ProfilePhoto variant="hero" priority={true} />
+              <img src={yishnuImg} alt="Yishnu" className="rounded-full w-[200px] h-[200px] md:w-[280px] md:h-[280px] object-cover border-4 border-white/10 shadow-2xl" />
             </div>
 
             <motion.div
