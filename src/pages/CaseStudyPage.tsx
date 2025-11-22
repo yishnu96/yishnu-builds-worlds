@@ -498,9 +498,9 @@ const CaseStudyPage = () => {
                     
                     /* Headings */
                     prose-headings:font-display prose-headings:text-white prose-headings:tracking-tight
-                    prose-h1:text-[32px] md:prose-h1:text-4xl prose-h1:mt-16 prose-h1:mb-6 prose-h1:first:mt-0 prose-h1:leading-tight prose-h1:border-b prose-h1:border-gradient-to-r prose-h1:from-[#7209B7] prose-h1:to-transparent prose-h1:pb-4
-                    prose-h2:text-2xl md:prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-5 prose-h2:leading-snug
-                    prose-h3:text-xl md:prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-4
+                    prose-h1:text-[32px] md:prose-h1:text-3xl prose-h1:mt-20 prose-h1:mb-6 prose-h1:first:mt-0 prose-h1:leading-tight prose-h1:border-b prose-h1:border-gradient-to-r prose-h1:from-[#7209B7] prose-h1:to-transparent prose-h1:pb-4
+                    prose-h2:text-2xl md:prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-5 prose-h2:leading-snug
+                    prose-h3:text-xl md:prose-h3:text-1xl prose-h3:mt-10 prose-h3:mb-4
                     
                     /* Body text */
                     prose-p:text-base md:prose-p:text-lg prose-p:text-[#B0B8C1] prose-p:leading-[1.8] prose-p:mb-6

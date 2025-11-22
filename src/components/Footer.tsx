@@ -19,14 +19,12 @@ const quickLinks = [
 ];
 
 const socials = [
-  { icon: Linkedin, href: "https://www.linkedin.com/in/yishnu", label: "LinkedIn" },
-  { icon: Twitter, href: "https://twitter.com/yishnu", label: "Twitter" },
-  { icon: FileText, href: "https://medium.com/@yishnu", label: "Medium" },
-  { icon: Code, href: "https://stackoverflow.com/users/8154250/yishnu-pramanik", label: "Stack Overflow" },
-  { icon: Instagram, href: "https://www.instagram.com/yishnu", label: "Instagram" },
-  { icon: Facebook, href: "https://www.facebook.com/yishnu", label: "Facebook" },
-  { icon: MessageCircle, href: "https://wa.me/919167100378", label: "WhatsApp" },
-  { icon: Mail, href: "mailto:hello@yishnu.me", label: "Email" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/yishnu-product-manager/", label: "LinkedIn" },
+  { icon: Twitter, href: "https://x.com/yishnu_", label: "X/Twitter" },
+  { icon: FileText, href: "https://yishnu.medium.com/", label: "Medium" },
+  { icon: Instagram, href: "https://www.instagram.com/yishnu_", label: "Instagram" },
+  { icon: MessageCircle, href: "https://wa.me/918972341673", label: "WhatsApp" },
+  { icon: Mail, href: "mailto:yishnu.p@gmail.com", label: "Email" },
 ];
 
 const Footer = () => {

@@ -90,7 +90,7 @@ const Navigation = () => {
               size="sm"
               className="bg-gradient-to-r from-[#F77F00] to-[#F48C06] text-white shadow-[0_0_20px_rgba(247,127,0,0.35)] transition-transform hover:scale-105 min-h-[44px]"
             >
-              <a href="/resume.pdf" target="_blank" rel="noreferrer">
+              <a href="https://drive.google.com/file/d/1EQBQuwwpLOmxMSUi49I4LGgTGgKo7Jtv/view?usp=sharing" target="_blank" rel="noreferrer">
                 Download Resume
               </a>
             </Button>
@@ -159,7 +159,7 @@ const Navigation = () => {
                   size="lg"
                   className="bg-gradient-to-r from-[#F77F00] to-[#F48C06] text-white shadow-[0_0_20px_rgba(247,127,0,0.35)] min-h-[44px] w-full"
                 >
-                  <a href="/resume.pdf" target="_blank" rel="noreferrer">
+                  <a href="https://drive.google.com/file/d/1EQBQuwwpLOmxMSUi49I4LGgTGgKo7Jtv/view?usp=sharing" target="_blank" rel="noreferrer">
                     Download Resume
                   </a>
                 </Button>

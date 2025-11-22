@@ -11,6 +11,8 @@ import {
   Mail,
   Download,
   Calendar,
+  Rss,
+  Video,
 } from "lucide-react";
 
 const SOCIAL_LINKS = [
@@ -19,56 +21,56 @@ const SOCIAL_LINKS = [
     label: "LinkedIn",
     tooltip: "Where I pretend to be professional",
     color: "bg-[#0077B5]",
-    href: "https://www.linkedin.com/in/yishnu",
+    href: "https://www.linkedin.com/in/yishnu-product-manager/",
   },
   {
     icon: Twitter,
-    label: "Twitter",
+    label: "X/Twitter",
     tooltip: "Tech hot takes & product memes",
     color: "bg-[#1DA1F2]",
-    href: "https://twitter.com/yishnu",
+    href: "https://x.com/yishnu_",
   },
   {
     icon: FileText,
     label: "Medium",
     tooltip: "Bollywood opinions no one asked for",
     color: "bg-[#00AB6C]",
-    href: "https://medium.com/@yishnu",
+    href: "https://yishnu.medium.com/",
   },
   {
-    icon: Code,
-    label: "Stack Overflow",
-    tooltip: "Helping devs not break production",
-    color: "bg-[#F48024]",
-    href: "https://stackoverflow.com/users/8154250/yishnu-pramanik",
+    icon: Rss,
+    label: "Substack",
+    tooltip: "Long-form thoughts & insights",
+    color: "bg-[#FF6719]",
+    href: "https://yishnu96.substack.com/",
   },
   {
     icon: Instagram,
     label: "Instagram",
     tooltip: "Life beyond pixels",
     color: "bg-[#E4405F]",
-    href: "https://www.instagram.com/yishnu",
+    href: "https://www.instagram.com/yishnu_",
   },
   {
-    icon: Facebook,
-    label: "Facebook",
-    tooltip: "For the aunties and uncles",
-    color: "bg-[#1877F2]",
-    href: "https://www.facebook.com/yishnu",
+    icon: Video,
+    label: "Topmate",
+    tooltip: "Book a 1:1 session with me",
+    color: "bg-[#9333EA]",
+    href: "https://topmate.io/yishnu",
   },
   {
     icon: MessageCircle,
     label: "WhatsApp",
     tooltip: "Let's chat! (I reply fast)",
     color: "bg-[#25D366]",
-    href: "https://wa.me/919167100378",
+    href: "https://wa.me/918972341673",
   },
   {
     icon: Mail,
     label: "Email",
     tooltip: "Old school but reliable",
     color: "bg-[#FFD700]",
-    href: "mailto:hello@yishnu.me",
+    href: "mailto:yishnu.p@gmail.com",
   },
 ];
 
@@ -137,7 +139,7 @@ const SocialConnect = () => {
             size="lg"
             className="w-full sm:w-auto h-14 rounded-full bg-gradient-to-r from-[#7209B7] to-[#06D6A0] px-8 text-white shadow-[0_18px_60px_rgba(114,9,183,0.35)] transition-transform hover:scale-[1.03]"
           >
-            <a href="/resume.pdf" download>
+            <a href="https://drive.google.com/file/d/1EQBQuwwpLOmxMSUi49I4LGgTGgKo7Jtv/view?usp=sharing" target="_blank" rel="noreferrer">
               <Download className="mr-2 h-5 w-5" /> Download My Resume
             </a>
           </Button>
@@ -146,8 +148,8 @@ const SocialConnect = () => {
             size="lg"
             className="w-full sm:w-auto h-14 rounded-full bg-gradient-to-r from-[#F77F00] to-[#FF9F1C] px-8 text-white shadow-[0_18px_60px_rgba(247,127,0,0.35)] transition-transform hover:scale-[1.03]"
           >
-            <a href="https://cal.com/yishnu/30min" target="_blank" rel="noreferrer">
-              <Calendar className="mr-2 h-5 w-5" /> Schedule a Call
+            <a href="https://calendly.com/yishnupramanik96/know-about-yishnu-pramanik" target="_blank" rel="noreferrer">
+              <Calendar className="mr-2 h-5 w-5" /> Book a Session
             </a>
           </Button>
         </motion.div>
