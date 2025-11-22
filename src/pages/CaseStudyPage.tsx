@@ -349,7 +349,7 @@ const CaseStudyPage = () => {
         </div>
 
         {/* Mobile Back Button + Breadcrumbs */}
-        <div className="lg:hidden sticky top-20 z-40 bg-[#0D1B2A]/95 backdrop-blur-md border-b border-white/5">
+        <div className="lg:hidden sticky z-40 bg-[#0D1B2A]/95 backdrop-blur-md border-b border-white/5">
           <div className="container mx-auto px-6 py-3 space-y-3">
             <Link
               to="/#case-studies"
