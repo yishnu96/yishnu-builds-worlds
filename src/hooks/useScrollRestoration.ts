@@ -42,9 +42,14 @@ export const useScrollRestoration = () => {
 
   // Restore scroll position when component mounts
   useEffect(() => {
+    // Check if this is a back/forward navigation (has state)
+    const navigationState = location.state as { fromProject?: string } | null;
+    const isBackNavigation = navigationState?.fromProject !== undefined;
+    
     const savedPosition = getScrollPosition(location.pathname);
     
-    if (savedPosition !== null) {
+    // Only restore if coming back from another page
+    if (isBackNavigation && savedPosition !== null && savedPosition > 0) {
       isRestoringRef.current = true;
       
       // Use requestAnimationFrame to ensure DOM is ready
@@ -52,23 +57,24 @@ export const useScrollRestoration = () => {
         requestAnimationFrame(() => {
           window.scrollTo({
             top: savedPosition,
-            behavior: 'smooth',
+            behavior: 'auto', // Instant scroll to avoid conflicts
           });
           
-          // Reset flag after scrolling completes
+          // Reset flag quickly
           setTimeout(() => {
             isRestoringRef.current = false;
-          }, 500);
+          }, 100);
         });
       });
     } else {
-      // No saved position, scroll to top
+      // Fresh navigation - scroll to top instantly
       window.scrollTo(0, 0);
+      isRestoringRef.current = false;
     }
 
     // Clean up expired cache entries
     cleanupCache();
-  }, [location.pathname]);
+  }, [location.pathname, location.state]);
 
   return {
     savePosition: (position: number) => saveScrollPosition(location.pathname, position),

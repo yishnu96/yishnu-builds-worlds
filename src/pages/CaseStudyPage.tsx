@@ -206,18 +206,18 @@ const CaseStudySidebar = ({ htmlContent }: { htmlContent: string }) => {
 
   return (
     <nav className="sticky top-24 hidden lg:block">
-      <div className="text-xs uppercase tracking-[0.3em] text-[#8A92A0] mb-4">
+      <div className="text-xs uppercase tracking-[0.3em] text-[#8A92A0] mb-3">
         On This Page
       </div>
-      <ul className="space-y-2 border-l-2 border-white/10">
+      <ul className="space-y-1 border-l-2 border-white/10">
         {headings.map((heading) => (
           <li key={heading.id} style={{ paddingLeft: `${(heading.level - 2) * 12}px` }}>
             <button
               onClick={() => scrollToHeading(heading.id)}
               className={cn(
-                "text-left text-sm transition-colors py-1 px-3 border-l-2 -ml-[2px]",
+                "text-left text-[13px] transition-all duration-200 py-2 px-3 border-l-2 -ml-[2px] w-full",
                 activeId === heading.id
-                  ? "border-[#7209B7] text-white font-medium"
+                  ? "border-[#7209B7] text-white font-medium shadow-[0_0_8px_rgba(114,9,183,0.3)]"
                   : "border-transparent text-[#B0B8C1] hover:text-white hover:border-[#7209B7]/50"
               )}
             >
@@ -246,7 +246,8 @@ const CaseStudyPage = () => {
   const nextProject = nextSlug ? CASE_STUDIES[nextSlug] : null;
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Scroll restoration is handled by useScrollRestoration hook in App.tsx
+    // Don't manually scroll to top here as it interferes with user scrolling
 
     // Track page view and mark as viewed
     if (slug && caseStudy) {
@@ -371,51 +372,61 @@ const CaseStudyPage = () => {
 
         {/* Hero Section */}
         <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+          {/* Enhanced Background */}
           <div className="absolute inset-0 -z-10">
             <img
               src={caseStudy.featuredImage}
               alt={caseStudy.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0D1B2A]/80 via-[#0D1B2A]/70 to-[#0D1B2A]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0D1B2A]/90 via-[#0D1B2A]/85 to-[#0D1B2A]" />
+            {/* Purple/Green gradient overlay */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(114,9,183,0.15),transparent_50%),radial-gradient(circle_at_70%_80%,rgba(6,214,160,0.1),transparent_50%)]" />
           </div>
 
-          <div className="container mx-auto px-6 text-center relative z-10">
+          <div className="container mx-auto px-6 text-center relative z-10 py-20 md:py-24">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="max-w-4xl mx-auto"
             >
+              {/* Category Tags */}
               <div className="flex flex-wrap gap-2 justify-center mb-6">
                 {caseStudy.category.map((cat, index) => (
-                  <span
+                  <motion.span
                     key={index}
-                    className="text-xs uppercase tracking-[0.3em] px-4 py-2 rounded-full border border-[#7209B7]/30 bg-[#7209B7]/10 text-[#7209B7]"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.1 + index * 0.1 }}
+                    className="text-xs uppercase tracking-[0.3em] px-4 py-2 rounded-full border border-[#7209B7]/40 bg-[#7209B7]/15 text-[#7209B7] backdrop-blur-sm"
                   >
                     {cat}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
 
-              <h1 className="font-display text-4xl md:text-6xl text-white leading-tight mb-6">
+              {/* Title - Responsive sizing */}
+              <h1 className="font-display text-[32px] md:text-5xl lg:text-6xl text-white leading-tight mb-6 px-4">
                 {caseStudy.title}
               </h1>
 
-              <p className="text-xl md:text-2xl text-[#B0B8C1] mb-8 max-w-3xl mx-auto">
+              {/* Tagline */}
+              <p className="text-lg md:text-xl lg:text-2xl text-[#B0B8C1] mb-8 max-w-3xl mx-auto px-4">
                 {caseStudy.tagline}
               </p>
 
+              {/* Metric Badge - Smaller on mobile */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="inline-flex flex-col items-center gap-2 px-8 py-4 rounded-2xl border border-white/20 bg-white/5 backdrop-blur-md"
+                className="inline-flex flex-col items-center gap-2 px-6 md:px-8 py-4 rounded-2xl border border-white/20 bg-white/5 backdrop-blur-md w-auto max-w-[200px] md:max-w-none shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
               >
-                <div className="text-5xl md:text-6xl font-display font-bold text-[#FFD700] drop-shadow-[0_0_20px_rgba(255,215,0,0.35)]">
+                <div className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-[#FFD700] drop-shadow-[0_0_20px_rgba(255,215,0,0.5)]">
                   {caseStudy.metricValue}
                 </div>
-                <div className="text-sm uppercase tracking-[0.3em] text-[#B0B8C1]">
+                <div className="text-xs md:text-sm uppercase tracking-[0.2em] md:tracking-[0.3em] text-[#B0B8C1]">
                   {caseStudy.metricLabel}
                 </div>
               </motion.div>
@@ -471,79 +482,146 @@ const CaseStudyPage = () => {
           </div>
         </section>
 
-        {/* Main Content Area */}
-        <section className="py-20">
+        {/* Main Content Area - Enhanced */}
+        <section className="py-12 md:py-20 bg-[#0D1B2A]">
           <div className="container mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-[240px,1fr] gap-12 max-w-[1400px] mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-[250px,1fr] gap-8 lg:gap-12 max-w-[1400px] mx-auto">
               <aside>
                 <CaseStudySidebar htmlContent={htmlContent} />
               </aside>
 
-              <article
-                id="case-study-content"
-                className="prose prose-invert prose-lg max-w-[800px] prose-headings:font-display prose-headings:text-white prose-p:text-[#B0B8C1] prose-p:leading-relaxed prose-a:text-[#7209B7] prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-code:text-[#06D6A0] prose-code:bg-white/5 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-pre:bg-[#1B2838] prose-pre:border prose-pre:border-white/10 prose-blockquote:border-l-[#7209B7] prose-blockquote:bg-[#1B2838]/50 prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:rounded-r-xl prose-blockquote:not-italic prose-li:text-[#B0B8C1] prose-hr:border-white/10"
-                dangerouslySetInnerHTML={{ __html: htmlContent }}
-              />
+              {/* Content wrapper with background */}
+              <div className="bg-[#1B2838] rounded-2xl lg:rounded-tl-2xl p-5 md:p-10 lg:p-14 border border-white/5">
+                <article
+                  id="case-study-content"
+                  className="prose prose-invert max-w-[700px] mx-auto
+                    
+                    /* Headings */
+                    prose-headings:font-display prose-headings:text-white prose-headings:tracking-tight
+                    prose-h1:text-[32px] md:prose-h1:text-4xl prose-h1:mt-16 prose-h1:mb-6 prose-h1:first:mt-0 prose-h1:leading-tight prose-h1:border-b prose-h1:border-gradient-to-r prose-h1:from-[#7209B7] prose-h1:to-transparent prose-h1:pb-4
+                    prose-h2:text-2xl md:prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-5 prose-h2:leading-snug
+                    prose-h3:text-xl md:prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-4
+                    
+                    /* Body text */
+                    prose-p:text-base md:prose-p:text-lg prose-p:text-[#B0B8C1] prose-p:leading-[1.8] prose-p:mb-6
+                    
+                    /* Links */
+                    prose-a:text-[#7209B7] prose-a:no-underline hover:prose-a:underline prose-a:transition-colors prose-a:duration-200
+                    
+                    /* Strong/Bold - White color */
+                    prose-strong:text-white prose-strong:font-semibold
+                    
+                    /* Emphasis/Italic */
+                    prose-em:text-[#B0B8C1] prose-em:italic
+                    
+                    /* Inline code */
+                    prose-code:text-[#06D6A0] prose-code:bg-[#243447] prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:font-mono prose-code:text-sm prose-code:before:content-[''] prose-code:after:content-['']
+                    
+                    /* Code blocks */
+                    prose-pre:bg-[#243447] prose-pre:border prose-pre:border-white/10 prose-pre:rounded-xl prose-pre:shadow-lg prose-pre:my-6 prose-pre:p-4
+                    
+                    /* Blockquotes - Enhanced testimonials */
+                    prose-blockquote:border-l-4 prose-blockquote:border-l-[#7209B7] prose-blockquote:bg-[#243447] prose-blockquote:px-6 prose-blockquote:py-5 prose-blockquote:rounded-r-xl prose-blockquote:not-italic prose-blockquote:text-white prose-blockquote:my-8 prose-blockquote:shadow-lg
+                    prose-blockquote:before:content-[''] prose-blockquote:after:content-['']
+                    
+                    /* Lists - Purple bullets, better spacing */
+                    prose-ul:list-none prose-ul:pl-0 prose-ul:space-y-4
+                    prose-li:text-[#B0B8C1] prose-li:text-base md:prose-li:text-lg prose-li:leading-[1.8] prose-li:pl-7 prose-li:relative
+                    prose-li:before:content-[''] prose-li:before:absolute prose-li:before:left-0 prose-li:before:top-[0.65em] prose-li:before:w-2 prose-li:before:h-2 prose-li:before:rounded-full prose-li:before:bg-[#7209B7] prose-li:before:shadow-[0_0_8px_rgba(114,9,183,0.6)]
+                    
+                    /* Ordered lists */
+                    prose-ol:pl-6 prose-ol:space-y-4
+                    prose-ol>li:text-[#B0B8C1] prose-ol>li:text-base md:prose-ol>li:text-lg prose-ol>li:marker:text-[#7209B7] prose-ol>li:marker:font-bold
+                    
+                    /* Horizontal rules */
+                    prose-hr:border-white/10 prose-hr:my-12
+                    
+                    /* Images */
+                    prose-img:rounded-xl prose-img:shadow-2xl prose-img:border prose-img:border-white/10 prose-img:my-8
+                    
+                    /* Tables */
+                    prose-table:border-collapse prose-table:w-full
+                    prose-th:bg-[#243447] prose-th:text-white prose-th:font-semibold prose-th:p-3 prose-th:text-left
+                    prose-td:border-t prose-td:border-white/10 prose-td:p-3 prose-td:text-[#B0B8C1]"
+                  dangerouslySetInnerHTML={{ __html: htmlContent }}
+                />
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Share Section */}
-        <section className="bg-[#1B2838] py-12 border-t border-white/5">
+        {/* Share Section - Enhanced */}
+        <section className="bg-[#0D1B2A] py-16 border-t border-[#3A4A5C]">
           <div className="container mx-auto px-6 max-w-4xl">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
               <div className="text-center md:text-left">
-                <h3 className="text-xl font-display text-white mb-2">Found this helpful?</h3>
-                <p className="text-[#B0B8C1]">Share this case study with your network</p>
+                <h3 className="text-2xl font-display font-bold text-white mb-2">Found this helpful?</h3>
+                <p className="text-base text-[#B0B8C1]">Share this case study with your network</p>
               </div>
-              <div className="flex gap-4">
-                <button
+              <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+                <motion.button
                   onClick={shareOnLinkedIn}
-                  className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#0A66C2] text-white hover:bg-[#004182] transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group relative flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#0A66C2] text-white font-medium transition-all duration-300 hover:shadow-[0_0_30px_rgba(10,102,194,0.5)] min-h-[44px]"
                 >
                   <Share2 className="h-4 w-4" />
-                  <span>LinkedIn</span>
-                </button>
-                <button
+                  <span>Share on LinkedIn</span>
+                  <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent_70%)] transition-opacity" />
+                </motion.button>
+                <motion.button
                   onClick={shareOnTwitter}
-                  className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#1DA1F2] text-white hover:bg-[#0d8bd9] transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group relative flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#1DA1F2] text-white font-medium transition-all duration-300 hover:shadow-[0_0_30px_rgba(29,161,242,0.5)] min-h-[44px]"
                 >
                   <Share2 className="h-4 w-4" />
-                  <span>Twitter</span>
-                </button>
+                  <span>Share on Twitter</span>
+                  <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent_70%)] transition-opacity" />
+                </motion.button>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Previous/Next Navigation */}
+        {/* Previous/Next Navigation - Enhanced */}
         {(previousProject || nextProject) && (
-          <section className="py-12 border-t border-white/5">
-            <div className="container mx-auto px-6 max-w-4xl">
-              <div className="grid md:grid-cols-2 gap-6">
+          <section className="bg-[#0D1B2A] py-16 border-t border-white/5">
+            <div className="container mx-auto px-6 max-w-5xl">
+              <div className={`grid gap-6 ${previousProject && nextProject
+                ? 'md:grid-cols-2'
+                : 'grid-cols-1 max-w-md mx-auto'
+                }`}>
                 {previousProject && previousSlug ? (
                   <Link
                     to={`/work/${previousSlug}`}
                     state={{ fromProject: slug }}
-                    className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-[#1B2838] to-[#0D1B2A] hover:border-[#7209B7] transition-all hover:scale-[1.02]"
+                    className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#1B2838] to-[#0D1B2A] hover:border-[#7209B7] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_40px_rgba(114,9,183,0.3)]"
                   >
-                    <div className="grid grid-cols-[80px,1fr] gap-4 p-6">
-                      <div className="relative aspect-square w-20 overflow-hidden rounded-lg border border-white/10">
-                        <div className="absolute inset-0 bg-gradient-to-br from-[#7209B7]/40 to-[#06D6A0]/30" />
+                    {/* Purple glow on hover */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(114,9,183,0.1),transparent_70%)]" />
+                    </div>
+
+                    <div className="relative z-10 grid grid-cols-[100px,1fr] gap-5 p-6">
+                      <div className="relative aspect-square w-[100px] overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-[#7209B7]/20 to-[#06D6A0]/10">
                         <img
                           src={previousProject.featuredImage}
                           alt={previousProject.title}
-                          className="h-full w-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                          className="h-full w-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
                         />
                       </div>
-                      <div>
+                      <div className="flex flex-col justify-center">
                         <div className="flex items-center gap-2 text-sm text-[#8A92A0] mb-2">
                           <ChevronLeft className="h-4 w-4" />
-                          <span>Previous Project</span>
+                          <span className="uppercase tracking-wider">Previous Project</span>
                         </div>
-                        <h4 className="text-xl font-display text-white group-hover:text-[#7209B7] transition-colors">
+                        <h4 className="text-xl md:text-2xl font-display text-white group-hover:text-[#7209B7] transition-colors">
                           {previousProject.title}
                         </h4>
+                        <p className="text-sm text-[#B0B8C1] mt-1 line-clamp-1">
+                          {previousProject.tagline}
+                        </p>
                       </div>
                     </div>
                   </Link>
@@ -555,24 +633,31 @@ const CaseStudyPage = () => {
                   <Link
                     to={`/work/${nextSlug}`}
                     state={{ fromProject: slug }}
-                    className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-[#1B2838] to-[#0D1B2A] hover:border-[#7209B7] transition-all hover:scale-[1.02]"
+                    className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#1B2838] to-[#0D1B2A] hover:border-[#7209B7] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_40px_rgba(114,9,183,0.3)]"
                   >
-                    <div className="grid grid-cols-[1fr,80px] gap-4 p-6">
-                      <div className="text-right">
+                    {/* Purple glow on hover */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(114,9,183,0.1),transparent_70%)]" />
+                    </div>
+
+                    <div className="relative z-10 grid grid-cols-[1fr,100px] gap-5 p-6">
+                      <div className="flex flex-col justify-center text-right">
                         <div className="flex items-center justify-end gap-2 text-sm text-[#8A92A0] mb-2">
-                          <span>Next Project</span>
+                          <span className="uppercase tracking-wider">Next Project</span>
                           <ChevronRight className="h-4 w-4" />
                         </div>
-                        <h4 className="text-xl font-display text-white group-hover:text-[#7209B7] transition-colors">
+                        <h4 className="text-xl md:text-2xl font-display text-white group-hover:text-[#7209B7] transition-colors">
                           {nextProject.title}
                         </h4>
+                        <p className="text-sm text-[#B0B8C1] mt-1 line-clamp-1">
+                          {nextProject.tagline}
+                        </p>
                       </div>
-                      <div className="relative aspect-square w-20 overflow-hidden rounded-lg border border-white/10">
-                        <div className="absolute inset-0 bg-gradient-to-br from-[#7209B7]/40 to-[#06D6A0]/30" />
+                      <div className="relative aspect-square w-[100px] overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-[#7209B7]/20 to-[#06D6A0]/10">
                         <img
                           src={nextProject.featuredImage}
                           alt={nextProject.title}
-                          className="h-full w-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                          className="h-full w-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
                         />
                       </div>
                     </div>
