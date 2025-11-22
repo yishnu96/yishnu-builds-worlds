@@ -1,9 +1,12 @@
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ArrowUpRight, Eye } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useViewedProjects } from "@/hooks/useViewedProjects";
+import { useCardHighlight } from "@/hooks/useCardHighlight";
+import { trackProjectCardClick } from "@/lib/analytics";
 
 type ProjectCategory = "All" | "0→1 Products" | "AI & Automation" | "B2B SaaS" | "Startups";
 
@@ -151,6 +154,80 @@ const OTHER_PROJECTS: ProjectSummary[] = [
   },
 ];
 
+// Featured Project Card Component
+const FeaturedProjectCard = ({ project, index }: { project: FeaturedProject; index: number }) => {
+  const navigate = useNavigate();
+  const { isViewed } = useViewedProjects();
+  const isHighlighted = useCardHighlight(project.id);
+  const viewed = isViewed(project.slug);
+
+  const handleClick = () => {
+    trackProjectCardClick(project.id, project.name);
+    navigate(`/work/${project.slug}`, { state: { fromProject: project.id } });
+  };
+
+  return (
+    <motion.article
+      id={`project-${project.id}`}
+      key={project.id}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      viewport={{ once: true }}
+      className={cn(
+        "grid items-center gap-10 lg:grid-cols-[3fr,2fr] cursor-pointer group relative",
+        isHighlighted && "ring-2 ring-[#7209B7] rounded-3xl shadow-[0_0_30px_rgba(114,9,183,0.5)]"
+      )}
+      onClick={handleClick}
+    >
+      {/* Visited Indicator */}
+      {viewed && (
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          className="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#7209B7]/90 backdrop-blur-sm"
+        >
+          <Eye className="h-3 w-3 text-white" />
+          <span className="text-xs text-white font-medium">Viewed</span>
+        </motion.div>
+      )}
+
+      <motion.div
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.98 }}
+        transition={{ duration: 0.2 }}
+        className="order-2 overflow-hidden rounded-3xl border border-white/5 bg-[#1B2838] shadow-[0_20px_60px_rgba(6,12,24,0.45)] lg:order-1"
+      >
+        <div className="relative aspect-[16/9] w-full overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#7209B7]/40 via-transparent to-[#06D6A0]/30" />
+          <img src={project.cover ?? "/placeholder.svg"} alt={`${project.name} preview`} className="h-full w-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
+        </div>
+      </motion.div>
+
+      <div className="order-1 space-y-6 text-white lg:order-2">
+        <p className="text-sm uppercase tracking-[0.3em] text-[#06D6A0]">{project.heroMetric}</p>
+        <h3 className="font-display text-2xl group-hover:text-[#7209B7] transition-colors">{project.name}</h3>
+        <p className="text-lg text-[#B0B8C1]">{project.tagline}</p>
+        <div className="flex items-center gap-3 text-[#FFD700]">
+          <span className="text-2xl font-display">{project.metricLabel}</span>
+          <span className="text-sm uppercase tracking-[0.3em] text-white/50">Impact</span>
+        </div>
+        <p className="max-w-xl text-base leading-8 text-[#B0B8C1]">{project.description}</p>
+        <div className="flex flex-wrap gap-2">
+          {project.tech.map((tech) => (
+            <span key={tech} className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[#B0B8C1]">
+              {tech}
+            </span>
+          ))}
+        </div>
+        <div className="inline-flex items-center gap-2 text-[#7209B7] group-hover:underline transition-colors">
+          Read Full Story <ArrowUpRight className="h-4 w-4" />
+        </div>
+      </div>
+    </motion.article>
+  );
+};
+
 const CaseStudies = () => {
   const [filter, setFilter] = useState<ProjectCategory>("All");
 
@@ -215,48 +292,7 @@ const CaseStudies = () => {
               className="space-y-20"
             >
               {visibleFeatured.map((project, index) => (
-                <motion.article
-                  key={project.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="grid items-center gap-10 lg:grid-cols-[3fr,2fr]"
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    className="order-2 overflow-hidden rounded-3xl border border-white/5 bg-[#1B2838] shadow-[0_20px_60px_rgba(6,12,24,0.45)] lg:order-1"
-                  >
-                    <div className="relative aspect-[16/9] w-full overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#7209B7]/40 via-transparent to-[#06D6A0]/30" />
-                      <img src={project.cover ?? "/placeholder.svg"} alt={`${project.name} preview`} className="h-full w-full object-cover opacity-80" />
-                    </div>
-                  </motion.div>
-
-                  <div className="order-1 space-y-6 text-white lg:order-2">
-                    <p className="text-sm uppercase tracking-[0.3em] text-[#06D6A0]">{project.heroMetric}</p>
-                    <h3 className="font-display text-2xl">{project.name}</h3>
-                    <p className="text-lg text-[#B0B8C1]">{project.tagline}</p>
-                    <div className="flex items-center gap-3 text-[#FFD700]">
-                      <span className="text-2xl font-display">{project.metricLabel}</span>
-                      <span className="text-sm uppercase tracking-[0.3em] text-white/50">Impact</span>
-                    </div>
-                    <p className="max-w-xl text-base leading-8 text-[#B0B8C1]">{project.description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tech.map((tech) => (
-                        <span key={tech} className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[#B0B8C1]">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                    <Link
-                      to={`/work/${project.slug}`}
-                      className="group inline-flex items-center gap-2 text-[#7209B7] transition-colors hover:underline"
-                    >
-                      Read Full Story →
-                    </Link>
-                  </div>
-                </motion.article>
+                <FeaturedProjectCard key={project.id} project={project} index={index} />
               ))}
             </motion.div>
           </AnimatePresence>
