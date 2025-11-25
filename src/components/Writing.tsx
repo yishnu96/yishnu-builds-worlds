@@ -1,9 +1,8 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 interface WritingColumnProps {
-  emoji: string;
+  icon: React.ReactNode;
   title: string;
   description: string;
   href: string;
@@ -26,7 +25,7 @@ const accentStyles = {
   },
 };
 
-const WritingColumn = ({ emoji, title, description, href, accent, delay, latest, subtitle }: WritingColumnProps) => {
+const WritingColumn = ({ icon, title, description, href, accent, delay, latest, subtitle }: WritingColumnProps) => {
   const styles = accentStyles[accent];
 
   return (
@@ -37,7 +36,7 @@ const WritingColumn = ({ emoji, title, description, href, accent, delay, latest,
       viewport={{ once: true }}
       className={`relative overflow-hidden rounded-[32px] border border-white/5 bg-gradient-to-br p-12 ${styles.gradient} ${styles.glow}`}
     >
-      <span className="text-[56px]">{emoji}</span>
+      <div className="mb-6">{icon}</div>
       <h3 className="mt-6 font-display text-3xl text-white leading-tight">{title}</h3>
       <p className="mt-3 text-sm uppercase tracking-[0.3em] text-[#8A92A0]">{subtitle}</p>
       <p className="mt-4 text-base md:text-lg leading-[1.7] text-[#B0B8C1]">{description}</p>
@@ -64,7 +63,7 @@ const WritingColumn = ({ emoji, title, description, href, accent, delay, latest,
         rel="noreferrer"
         className="mt-8 inline-flex items-center gap-2 text-[#7209B7] transition-colors hover:underline"
       >
-        Read more on Medium →
+        Read more →
       </a>
     </motion.article>
   );
@@ -96,30 +95,40 @@ const Writing = () => {
 
         <div className="mt-16 grid gap-10 md:grid-cols-2">
           <WritingColumn
-            emoji="🎬"
+            icon={
+              <svg role="img" viewBox="0 0 24 24" className="h-12 w-12 fill-white" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z" />
+              </svg>
+            }
             title="Random Musings"
             subtitle="Medium"
-            description="Where I write about Bollywood, life, politics, and whatever crosses my mind."
+            description="I write about ancient history, spirituality, philosophy, and whatever idea pulls me in."
             href="https://medium.com/@yishnu"
             accent="purple"
             delay={0.2}
             latest={[
-              { title: "Bollywood's Product Problem", href: "https://medium.com/@yishnu" },
-              { title: "Why founders need drama-free ops", href: "https://medium.com/@yishnu" },
+              { title: "The Map That Reveals About India’s Greatest War", href: "https://yishnu.medium.com/the-map-that-reveals-about-indias-greatest-war-1825ef3ec2d2" },
+              { title: "How Beliefs Shape Who We Become", href: "https://yishnu.medium.com/how-beliefs-shape-who-we-become-b8a716b38b9f" },
+              { title: "Why Indian Films Feel Different", href: "https://yishnu.medium.com/why-indian-films-feel-different-0dd91d396a27" },
             ]}
           />
 
           <WritingColumn
-            emoji="💻"
+            icon={
+              <svg role="img" viewBox="0 0 24 24" className="h-12 w-12 fill-[#FF6719]" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z" />
+              </svg>
+            }
             title="Tech & Product Insights"
-            subtitle="Stack Overflow & beyond"
+            subtitle="Substack"
             description="Where I actually help people solve AI, business, and product problems. The useful stuff."
-            href="https://stackoverflow.com/users/8154250/yishnu-pramanik"
+            href="https://yishnu96.substack.com/"
             accent="green"
             delay={0.3}
             latest={[
-              { title: "How to productionise an AI agent", href: "https://stackoverflow.com/users/8154250/yishnu-pramanik" },
-              { title: "Documenting growth experiments", href: "https://stackoverflow.com/users/8154250/yishnu-pramanik" },
+              { title: "How AI is Breaking Product Design", href: "https://open.substack.com/pub/yishnu96/p/how-ai-is-breaking-product-design?r=bajcn&utm_campaign=post&utm_medium=web&showWelcomeOnShare=false" },
+              { title: "How the Soviet Revolution Led to Google and LLMs", href: "https://open.substack.com/pub/yishnu96/p/what-makes-first-principles-thinking?r=bajcn&utm_campaign=post&utm_medium=web&showWelcomeOnShare=false" },
+              { title: "AI will make User Interface Obsolete", href: "https://open.substack.com/pub/yishnu96/p/ui-is-about-to-become-obsolete?r=bajcn&utm_campaign=post&utm_medium=web&showWelcomeOnShare=false" },
             ]}
           />
         </div>

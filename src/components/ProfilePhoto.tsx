@@ -166,7 +166,7 @@ const ProfilePhoto = ({ variant = "hero", priority = false }: ProfilePhotoProps)
             </div>
           ) : (
             <img
-              src="/images/yishnu-profile.jpg"
+              src="/apple-touch-icon.png"
               alt="Yishnu Pramanik - Product Manager and AI Specialist"
               className="w-full h-full object-cover rounded-full"
               loading="lazy"

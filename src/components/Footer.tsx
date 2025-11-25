@@ -78,7 +78,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <motion.p
+        {/* <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
@@ -86,7 +86,7 @@ const Footer = () => {
           className="mt-10 text-center text-xs text-[#8A92A0]"
         >
           Built with React, Framer Motion, and way too much coffee ☕
-        </motion.p>
+        </motion.p> */}
       </div>
     </footer>
   );

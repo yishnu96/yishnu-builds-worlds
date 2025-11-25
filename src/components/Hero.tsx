@@ -118,8 +118,8 @@ const Hero = () => {
               transition={{ duration: 0.7, delay: 0.6 }}
               className="max-w-lg text-sm text-[#8A92A0] text-center md:text-left px-4 md:px-0"
             >
-              Currently helping founders automate stuff with AI. Previously built a cloud platform used by 6,000+ people. Sometimes I write
-              random thoughts about Bollywood on Medium 🎬
+              Helping founders automate with AI. Earlier, I built a cloud platform used by 6,000+ people. I mostly write about tech, strategy, and innovation on Substack
+              and sometimes drift into Ancient history, Spirituality, and other rabbit holes on Medium. 🎬
             </motion.p>
           </div>
 

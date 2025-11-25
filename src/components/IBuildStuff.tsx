@@ -4,17 +4,15 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const AUTOMATIONS = [
-  { icon: "⚡", name: "Real Estate Voice Agent", tag: "n8n + Vapia" },
-  { icon: "⚡", name: "Lead Scoring Pipeline", tag: "Make.com + AI" },
-  { icon: "⚡", name: "Content Generator Workflow", tag: "Zapier + GPT-4" },
-  { icon: "⚡", name: "Data Extraction Bot", tag: "n8n + Anthropic" },
+  { icon: "⚡", name: "Voice Agent", tag: "n8n + Vapia", href: "https://github.com/yishnu96/AI-Automations/tree/main/Voice%20Agent" },
+  { icon: "⚡", name: "Lead Scraper", tag: "Make.com + AI", href: "https://github.com/yishnu96/AI-Automations/tree/main/Lead%20Scraper" },
+  { icon: "⚡", name: "Fully Automated Sales Agent", tag: "Zapier + GPT-4", href: "https://github.com/yishnu96/AI-Automations/blob/main/Fully%20Automated%20Sales%20Agent.json" },
 ];
 
 const REPOS = [
-  { icon: "📦", name: "pm-toolkit", tag: "Python scripts for PMs" },
-  { icon: "📦", name: "mvp-starter-template", tag: "Next.js boilerplate" },
-  { icon: "📦", name: "ai-prompt-library", tag: "Curated prompts" },
-  { icon: "📦", name: "analytics-dashboard", tag: "React + Recharts" },
+  { icon: "📦", name: "pm-toolkit", tag: "Python scripts for PMs", href: "#" },
+  { icon: "📦", name: "ai-prompt-library", tag: "Curated prompts", href: "#" },
+  { icon: "📦", name: "analytics-dashboard", tag: "React + Recharts", href: "#" },
 ];
 
 const IBuildStuff = () => {
@@ -52,7 +50,7 @@ const IBuildStuff = () => {
                 AI Automations
               </h3>
               <p className="text-base text-muted-foreground leading-relaxed mb-8">
-                Custom AI agents and workflows I've built for clients. From voice agents to 
+                Custom AI agents and workflows I've built for clients. From voice agents to
                 data pipelines, see what's possible when you combine LLMs with no-code tools.
               </p>
 
@@ -60,7 +58,9 @@ const IBuildStuff = () => {
                 {AUTOMATIONS.map((item, index) => (
                   <motion.a
                     key={item.name}
-                    href="#"
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1 * index }}
@@ -78,7 +78,7 @@ const IBuildStuff = () => {
               </div>
 
               <a
-                href="#"
+                href="https://github.com/yishnu96/AI-Automations"
                 className="inline-flex items-center gap-2 text-[#7209B7] transition-colors hover:underline"
               >
                 View All Automations →
@@ -104,7 +104,7 @@ const IBuildStuff = () => {
                 Open Source & Code
               </h3>
               <p className="text-base text-muted-foreground leading-relaxed mb-8">
-                Tools, scripts, and side projects I've open-sourced. Because sharing is caring, 
+                Tools, scripts, and side projects I've open-sourced. Because sharing is caring,
                 and good code should be free.
               </p>
 
@@ -112,7 +112,9 @@ const IBuildStuff = () => {
                 {REPOS.map((item, index) => (
                   <motion.a
                     key={item.name}
-                    href="#"
+                    href={item.href || "#"}
+                    target={item.href && item.href !== "#" ? "_blank" : undefined}
+                    rel={item.href && item.href !== "#" ? "noreferrer" : undefined}
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1 * index }}
@@ -130,7 +132,7 @@ const IBuildStuff = () => {
               </div>
 
               <a
-                href="#"
+                href="https://github.com/yishnu96"
                 className="inline-flex items-center gap-2 text-[#7209B7] transition-colors hover:underline"
               >
                 View GitHub Profile →
@@ -141,11 +143,6 @@ const IBuildStuff = () => {
             <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-secondary/10 blur-3xl transition-all duration-500 group-hover:bg-secondary/20" />
           </motion.div>
         </div>
-
-        {/* Note about placeholders */}
-        <p className="mt-8 text-center text-sm text-muted-foreground/60 italic">
-          Links to be updated with actual automation and repository URLs
-        </p>
       </div>
     </section>
   );

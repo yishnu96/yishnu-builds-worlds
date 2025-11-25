@@ -46,17 +46,12 @@ const PersonalPhoto = () => {
 
             <div className="space-y-6 text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0">
               <p>
-                Started as a software engineer who couldn't stop asking "why are we building this?"
-                That curiosity led me to product management, where I get to build things AND ask
-                annoying questions.
+                Always been the person who needs to know how things work — people, products, systems, all of it. That curiosity pulled me from software engineering into product management,
+                where I get to build with intention and question everything that doesn’t make sense. I think like a founder, care about the emotional + technical details, and love the moment when users actually feel the product.
               </p>
               <p>
-                When I'm not shipping products, I'm probably writing hot takes about Bollywood on
-                Medium, helping founders automate their chaos, or trying to convince ChatGPT that
-                I'm actually funny.
-              </p>
-              <p>
-                Based in Mumbai. Always caffeinated. Occasionally makes sense.
+                When I’m not building, I’m usually lost in rabbit holes about
+                ancient history, spirituality, space, or anything that makes the world look a little different.
               </p>
             </div>
 
@@ -69,17 +64,17 @@ const PersonalPhoto = () => {
               className="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-muted-foreground"
             >
               {[
-                { icon: "🎓", text: "B.Tech CSE" },
-                { icon: "📍", text: "Mumbai" },
-                { icon: "☕", text: "Coffee Addict" },
-                { icon: "🎬", text: "Bollywood Fan" },
+                { icon: "🧐", text: "Curious" },
+                { icon: "🚀", text: "Tech-driven" },
+                { icon: "🛠️", text: "Builder" },
+                { icon: "🧭", text: "Explorer" },
               ].map((stat, index) => (
                 <motion.div
                   key={stat.text}
                   whileHover={{ scale: 1.1, y: -2 }}
                   className="flex items-center gap-2 text-base"
                 >
-                  <span className="text-[40px]">{stat.icon}</span>
+                  <span className="text-[30px]">{stat.icon}</span>
                   <span>{stat.text}</span>
                 </motion.div>
               ))}

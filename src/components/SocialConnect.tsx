@@ -148,7 +148,7 @@ const SocialConnect = () => {
             size="lg"
             className="w-full sm:w-auto h-14 rounded-full bg-gradient-to-r from-[#F77F00] to-[#FF9F1C] px-8 text-white shadow-[0_18px_60px_rgba(247,127,0,0.35)] transition-transform hover:scale-[1.03]"
           >
-            <a href="https://calendly.com/yishnupramanik96/know-about-yishnu-pramanik" target="_blank" rel="noreferrer">
+            <a href="https://cal.com/yishnu/30min" target="_blank" rel="noreferrer">
               <Calendar className="mr-2 h-5 w-5" /> Book a Session
             </a>
           </Button>
