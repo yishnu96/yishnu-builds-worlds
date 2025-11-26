@@ -40,7 +40,7 @@ const FEATURED_PROJECTS: FeaturedProject[] = [
     tech: ["Kubernetes", "WebRTC", "AWS S3", "Linux"],
     categories: ["0→1 Products", "B2B SaaS"],
     heroMetric: "6,000+ users onboarded",
-    cover: "/placeholder.svg",
+    cover: "/images/projects/dflare-daas.png",
     slug: "dflare-daas-platform",
   },
   {
@@ -53,7 +53,7 @@ const FEATURED_PROJECTS: FeaturedProject[] = [
     tech: ["Sales Strategy", "User Personas", "HHW Framework"],
     categories: ["B2B SaaS", "Startups"],
     heroMetric: "4x conversion boost",
-    cover: "/placeholder.svg",
+    cover: "/images/projects/vendosmart-sales.png",
     slug: "vendosmart-sales-framework",
   },
   {
@@ -66,7 +66,7 @@ const FEATURED_PROJECTS: FeaturedProject[] = [
     tech: ["OpenAI", "Twilio", "Python", "AWS Lambda"],
     categories: ["AI & Automation", "0→1 Products"],
     heroMetric: "$800K annual savings",
-    cover: "/placeholder.svg",
+    cover: "/images/projects/ai-voice-agent.png",
     slug: "ai-voice-agent",
   },
   {
@@ -79,7 +79,7 @@ const FEATURED_PROJECTS: FeaturedProject[] = [
     tech: ["Angular", "Python", "Node.js", "MongoDB"],
     categories: ["B2B SaaS", "0→1 Products", "Startups"],
     heroMetric: "16x buyer growth",
-    cover: "/placeholder.svg",
+    cover: "/images/projects/vendosmart-platform.png",
     slug: "vendosmart-platform",
   },
 ];
