@@ -10,9 +10,10 @@ import { useViewedProjects } from "@/hooks/useViewedProjects";
 import { trackPageView, useTimeOnPage, useScrollDepth } from "@/lib/analytics";
 
 // Direct imports of markdown files
-import coredgeRaw from '../../content/case-studies/coredge-daas-platform.md?raw';
-import vendosmartRaw from '../../content/case-studies/vendosmart-scale.md?raw';
+import dflareRaw from '../../content/case-studies/building-daas-dflare.md?raw';
+import vendosmartSalesRaw from '../../content/case-studies/vendosmart-sales-framework.md?raw';
 import aiVoiceRaw from '../../content/case-studies/ai-voice-agent.md?raw';
+import vendosmartPlatformRaw from '../../content/case-studies/vendosmart-platform-devlopment.md?raw';
 
 interface CaseStudyData {
   title: string;
@@ -113,9 +114,10 @@ function parseCaseStudy(rawContent: string): CaseStudyData {
 
 // Parse all case studies
 const CASE_STUDIES: Record<string, CaseStudyData> = {
-  'coredge-daas-platform': parseCaseStudy(coredgeRaw),
-  'vendosmart-scale': parseCaseStudy(vendosmartRaw),
+  'dflare-daas-platform': parseCaseStudy(dflareRaw),
+  'vendosmart-sales-framework': parseCaseStudy(vendosmartSalesRaw),
   'ai-voice-agent': parseCaseStudy(aiVoiceRaw),
+  'vendosmart-platform': parseCaseStudy(vendosmartPlatformRaw),
 };
 
 const CASE_STUDY_ORDER = Object.values(CASE_STUDIES)

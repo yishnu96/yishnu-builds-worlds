@@ -44,7 +44,7 @@ When I joined Coredge, they had a vision: productize their entire data center of
 
 I spent the first month understanding the pain points:
 
-1. Interviewed 20+ enterprise IT admins
+1. Interviewed 10+ enterprise IT admins
 2. Shadowed support teams handling desktop requests
 3. Analyzed competitor offerings (AWS WorkSpaces, Azure Virtual Desktop)
 4. Mapped the entire user journey from request to usage
@@ -91,12 +91,12 @@ Added support for ML/AI workloads with real-time GPU utilization monitoring and 
 ### Key Metrics
 
 - **6,000+** Active Users
-- **3 min** Setup Time (from 15 min)
+- **10s** Setup Time (from 15 min)
 - **99.9%** Uptime SLA
 
 ### User Impact
 
-- **Deployment Time:** Reduced from 15 minutes to 3 minutes (80% improvement)
+- **Deployment Time:** Reduced from 15 minutes to 10 seconds (80% improvement)
 - **User Satisfaction:** NPS score of 72 (considered excellent for B2B)
 - **Support Tickets:** Dropped 60% after self-service launch
 
